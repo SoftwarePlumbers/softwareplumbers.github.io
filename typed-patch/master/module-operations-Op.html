@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>typed-patch Index</title>
+	<title>typed-patch Class: Op</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,53 +72,358 @@
 		<div id="main">
 			
 
-	
-	
+	<h1 class="page-title">Class: Op</h1>
+<section>
 
-
-
-
-
-
-
-
-
-
-
-	
-	
-
-
-
-
-
-    <section class="readme-section">
-        <article><h1>typed-patch</h1><p>Type-aware patch utility.</p>
-<h2>Tl;DR</h2><pre class="prettyprint source lang-javascript"><code>let patch = Patch.compare(object1, object2);
-
-let object3 = patch.apply(object2)</code></pre><p>and object3 should equal object1.</p>
-<p>If any of the properties and sub-properties of object1 are themselves classes, and have a static method <code>fromJSON</code> somewhere in their prototype chain, then this <code>fromJSON</code> method will be applied to the result of merging properties betweem the appropriate sub-trees in order to create an object of the correct class.</p>
-<p>The utility has more subtle and feature-rich ways of specifying types, and doing things like deciding the type of array elements and specifying how arrays are merged. If interested, read on.</p>
-<h2>Project Status</h2><p>Early alpha. Don't use it unless you want to contribute bug fixes. Major elements of the API can and probably will change.</p>
-<h2>Why another diff/patch utility?</h2><p>This one is aware of object types and potential polymorphism in the patch. That is to say, that the object tree that results from applying a patch to an object may contain objects of different classes to those which were in the patch object or indeed to those in the original patched object.</p>
-<p>Many other diff/patch utilities also create rather verbose patches; the JSON pointer specification (RFC6901) is admirable but its use as a basis for a patch format is questionable. If each leaf that differs in the tree must be identified by its full path from the root (per JSONP) then in deeply nested object trees the property names nearer the root appear many times in the resulting diff. This diff creates a hierarchical diff format that is concise and reasonably easy to read.</p>
-<h2>Type Awareness</h2><p>When merging properties between the patched object and the patch, the resulting property can either be a straight object (in which case, no problem) or an instance of a class. To create an instance of the class, the patch algorithm needs to know what kind of object to create.</p>
-<p>Encoding types in the diff format is an option which we have rejected due to the implications of allowing data transmitted over the wire to specify a class name that the data will be converted into.</p>
-<p>This problem is closely related to the issue of re-creating object trees from JSON delivered across the wire or from document stores like Mongo. This may be why there are so many diff utilities - they are usually bound to a particular way of doing things.</p>
-<p>By default, typed-patch therefore derives type information entirely from the object to be patched. This can be achieved most simply by putting a static method <code>fromJSON</code> in the base class of any typed property. This method is used to covert untyped properties into an instance of the required object class.</p>
-<p>This works in many cases, but not when the patch contains properties that do not exist in the patched object. In this case, we need to implement a getAttrProps static method which takes a name argument and returns an object containing a factory method (<code>elementFactory</code>) or an object type <code>elementType</code> suitable for populating the property of that name.</p>
-<h2>Array properties</h2><p>In the case of array properties, getAttrProps may also return the following metadata:</p>
+<header>
+    
+        <h2>
+            <span class="ancestors"><a href="module-operations.html">operations</a>~</span>
+        
+        Op
+        </h2>
+        
+            <div class="class-description"><p>Base class for patch operations.</p>
+<p>Patch operations should support the following operations:</p>
 <ul>
-<li><code>key</code> the name of a property that uniquely identifies elements in the array</li>
-<li><code>keyComparator</code> a compator object for comparing keys</li>
-<li><code>sorted</code> defines if the array can be assumed to be sorted by <code>key</code></li>
-<li><code>arrayElementType</code> the type of elements in the array</li>
-<li><code>arrayElementFactory</code> a factor object for creating new array elements</li>
-</ul></article>
-    </section>
+<li>patch(to_patch, options) recursively apply patch to change to_patch</li>
+<li>toJSON() convert a patch into JSON for over-the-wire operations</li>
+<li>toString() convert a patch into a succincy human-readable string format</li>
+</ul>
+<p>Patch operations should also have a read-only property 'name' which represents the name of the operation.</p></div>
+        
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+<hr>
+<dt>
+    <h4 class="name" id="Op"><span class="type-signature"></span>new Op()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
 
 
 
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+<hr>
+<dt class="name" id="name">
+    <h4 id="name"><span class="type-signature"></span>name<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Defauly implementation of name property returns the name of the constructor</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id="toJSON"><span class="type-signature"></span>toJSON()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Convert to JSON format</p>
+<p>JSON format looks like <code>{ op: &lt;operation name&gt; data: &lt;data&gt; }</code>. As a special case, <code>Rpl</code> operations
+(which simply replace existing data) are elided in JSON format (so the above example would just read
+<code>&lt;data&gt;</code>).</p>
+<p>The patch operation as an untyped JSON object tree.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="toString"><span class="type-signature"></span>toString()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Convert to String format</p>
+<p>String format looks like <code>&lt;operation name&gt; { &lt;data&gt; }</code></p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
