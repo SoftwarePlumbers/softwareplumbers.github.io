@@ -40,7 +40,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-operations-Arr.html">operations~Arr</a></li><li><a href="module-operations-ElementFactory.html">operations~ElementFactory</a></li><li><a href="module-operations-Ins.html">operations~Ins</a></li><li><a href="module-operations-Mrg.html">operations~Mrg</a></li><li><a href="module-operations-Op.html">operations~Op</a></li><li><a href="module-operations-Row.html">operations~Row</a></li><li><a href="module-operations-Rpl.html">operations~Rpl</a></li><li><a href="module-options-Options.html">options~Options</a></li><li><a href="module-patch-Patch.html">patch~Patch</a></li>
+					<li><a href="module-operations-Arr.html">operations~Arr</a></li><li><a href="module-operations-ElementFactory.html">operations~ElementFactory</a></li><li><a href="module-operations-Ins.html">operations~Ins</a></li><li><a href="module-operations-Map.html">operations~Map</a></li><li><a href="module-operations-Mrg.html">operations~Mrg</a></li><li><a href="module-operations-Op.html">operations~Op</a></li><li><a href="module-operations-Row.html">operations~Row</a></li><li><a href="module-operations-Rpl.html">operations~Rpl</a></li><li><a href="module-options-Options.html">options~Options</a></li><li><a href="module-patch-Patch.html">patch~Patch</a></li>
 				</ul>
 			</li>
 			
@@ -93,13 +93,14 @@
 
 
     <section class="readme-section">
-        <article><h1>typed-patch</h1><p>Type-aware patch utility.</p>
+        <article><h1><img src="http://docs.softwareplumbers.com/common/img/SquareIdent-160.png" alt="Software Plumbers"> Typed Patch</h1><p>The type-aware object patch utility.</p>
 <h2>Tl;DR</h2><pre class="prettyprint source lang-javascript"><code>let patch = Patch.compare(object1, object2);
 
 let object3 = patch.apply(object2)</code></pre><p>and object3 should equal object1.</p>
 <p>If any of the properties and sub-properties of object1 are themselves classes, and have a static method <code>fromJSON</code> somewhere in their prototype chain, then this <code>fromJSON</code> method will be applied to the result of merging properties betweem the appropriate sub-trees in order to create an object of the correct class.</p>
 <p>The utility has more subtle and feature-rich ways of specifying types, and doing things like deciding the type of array elements and specifying how arrays are merged. If interested, read on.</p>
-<h2>Project Status</h2><p>Early alpha. Don't use it unless you want to contribute bug fixes. Major elements of the API can and probably will change.</p>
+<p>For the latest API documentation see <a href="http://docs.softwareplumbers.com/typed-patch/master">The Software Plumbers Site</a></p>
+<h2>Project Status</h2><p>Alpha. It seems functional, and the unit tests pass. The basic API is settling down.  </p>
 <h2>Why another diff/patch utility?</h2><p>This one is aware of object types and potential polymorphism in the patch. That is to say, that the object tree that results from applying a patch to an object may contain objects of different classes to those which were in the patch object or indeed to those in the original patched object.</p>
 <p>Many other diff/patch utilities also create rather verbose patches; the JSON pointer specification (RFC6901) is admirable but its use as a basis for a patch format is questionable. If each leaf that differs in the tree must be identified by its full path from the root (per JSONP) then in deeply nested object trees the property names nearer the root appear many times in the resulting diff. This diff creates a hierarchical diff format that is concise and reasonably easy to read.</p>
 <h2>Type Awareness</h2><p>When merging properties between the patched object and the patch, the resulting property can either be a straight object (in which case, no problem) or an instance of a class. To create an instance of the class, the patch algorithm needs to know what kind of object to create.</p>
@@ -109,12 +110,16 @@ let object3 = patch.apply(object2)</code></pre><p>and object3 should equal objec
 <p>This works in many cases, but not when the patch contains properties that do not exist in the patched object. In this case, we need to implement a getAttrProps static method which takes a name argument and returns an object containing a factory method (<code>elementFactory</code>) or an object type <code>elementType</code> suitable for populating the property of that name.</p>
 <h2>Array properties</h2><p>In the case of array properties, getAttrProps may also return the following metadata:</p>
 <ul>
-<li><code>key</code> the name of a property that uniquely identifies elements in the array</li>
-<li><code>keyComparator</code> a compator object for comparing keys</li>
+<li><code>collectionElementType</code> the type of elements in the array</li>
+<li><code>collectionElementFactory</code> a factor object for creating new array elements</li>
+<li><code>map</code> determines if an array can be treated as a map.</li>
+<li><code>key</code> the name of a property that uniquely identifies elements in the array (defaults to 'key')</li>
+<li><code>keyComparator</code> a comparator object for comparing keys</li>
 <li><code>sorted</code> defines if the array can be assumed to be sorted by <code>key</code></li>
-<li><code>arrayElementType</code> the type of elements in the array</li>
-<li><code>arrayElementFactory</code> a factor object for creating new array elements</li>
-</ul></article>
+</ul>
+<p>Maps are diffed and merged by comparing a sorted lists of key values; the order of maps may not be preserved in the merge 
+operation. For a map to be successfully patched, it must possess a key property. Non-maps are diffed using an LCS algorithm.
+As of now, the 'key' and 'keyComparator' options are only significant for maps. </p></article>
     </section>
 
 
@@ -164,7 +169,7 @@ let object3 = patch.apply(object2)</code></pre><p>and object3 should equal objec
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
-		on 2017-08-21T07:00:23-04:00
+		on 2017-08-22T14:05:57-04:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
