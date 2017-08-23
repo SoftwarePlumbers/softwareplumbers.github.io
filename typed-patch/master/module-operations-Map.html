@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>typed-patch Module: utils</title>
+	<title>typed-patch Class: Map</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,10 +72,19 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Module: utils</h1>
+	<h1 class="page-title">Class: Map</h1>
 <section>
 
 <header>
+    
+        <h2>
+            <span class="ancestors"><a href="module-operations.html">operations</a>~</span>
+        
+        Map
+        </h2>
+        
+            <div class="class-description"><p>Merge operation for Maps (Map == iterable with a unique key)</p></div>
+        
     
 </header>
 
@@ -84,10 +93,78 @@
     <div class="container-overview">
     
         
-            <div class="description"><p>Utility functions for typed-patch</p></div>
+<hr>
+<dt>
+    <h4 class="name" id="Map"><span class="type-signature"></span>new Map(operations)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Create an array merge operation</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
         
 
         
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>operations</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An array of row merge operations, must be sorted by a suitable key</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
 <dl class="details">
     
 
@@ -127,7 +204,21 @@
 </dl>
 
 
-        
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
     
     </div>
 
@@ -150,7 +241,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~appendString"><span class="type-signature">&lt;inner> </span>appendString(res, name)</h4>
+    <h4 class="name" id="patch"><span class="type-signature"></span>patch(map, options)</h4>
     
     
 </dt>
@@ -158,8 +249,7 @@
 
     
     <div class="description">
-        <p>Append a name/value pair to a string.</p>
-<p>Appends name : value to a string, prefixed with a ',' if the string is not empty.</p>
+        <p>Merge map data with data from the patch.</p>
     </div>
     
 
@@ -194,7 +284,7 @@
 
         <tr>
             
-                <td class="name"><code>res</code></td>
+                <td class="name"><code>map</code></td>
             
 
             <td class="type">
@@ -205,14 +295,14 @@
 
             
 
-            <td class="description last"><p>string to append to</p></td>
+            <td class="description last"><p>to merge with patch data.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>name</code></td>
+                <td class="name"><code>options</code></td>
             
 
             <td class="type">
@@ -223,8 +313,7 @@
 
             
 
-            <td class="description last"><p>name to append
-param value value to append</p></td>
+            <td class="description last"><p>options affecting how merge is performed. See DEFAULT_OPTIONS</p></td>
         </tr>
 
     
@@ -292,7 +381,7 @@ param value value to append</p></td>
             
 <hr>
 <dt>
-    <h4 class="name" id="~compare"><span class="type-signature">&lt;inner> </span>compare(a, b)</h4>
+    <h4 class="name" id="toJSON"><span class="type-signature"></span>toJSON()</h4>
     
     
 </dt>
@@ -300,9 +389,8 @@ param value value to append</p></td>
 
     
     <div class="description">
-        <p>Utility function to objects that have a key properties</p>
-<p>options.key holds the name of the key property
-options.keyComparator may hold an optional comparator for values of key</p>
+        <p>Convert to JSON representation.</p>
+<p>The JSON representation of an Map operation looks like <code>{ op: 'Map' data: [ &lt;rows&gt; ] }</code></p>
     </div>
     
 
@@ -311,68 +399,6 @@ options.keyComparator may hold an optional comparator for values of key</p>
     
 
     
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>a</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>object with a key value</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>b</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>object with a key value</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
     
 
     
@@ -434,7 +460,7 @@ options.keyComparator may hold an optional comparator for values of key</p>
             
 <hr>
 <dt>
-    <h4 class="name" id="~compareWith"><span class="type-signature">&lt;inner> </span>compareWith(akey, b)</h4>
+    <h4 class="name" id="toString"><span class="type-signature"></span>toString()</h4>
     
     
 </dt>
@@ -442,9 +468,8 @@ options.keyComparator may hold an optional comparator for values of key</p>
 
     
     <div class="description">
-        <p>Utility function to compare key with object (that has a key property)</p>
-<p>options.key holds the name of the key property
-options.keyComparator may hold an optional comparator for values of key</p>
+        <p>Convert to String representation.</p>
+<p>The String representation of an Map operation looks like <code>Map [ &lt;rows&gt; ]</code></p>
     </div>
     
 
@@ -453,68 +478,6 @@ options.keyComparator may hold an optional comparator for values of key</p>
     
 
     
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>akey</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>key to compare with object</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>b</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>object with a key value</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
     
 
     
@@ -568,454 +531,6 @@ options.keyComparator may hold an optional comparator for values of key</p>
     
 
     
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="~map"><span class="type-signature">&lt;inner> </span>map(object, fn)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Utility function that applies a function to transform all the properties of an object</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>object</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>for which we will transform properties</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>fn</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>function to apply property transformation</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="~print"><span class="type-signature">&lt;inner> </span>print(object)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Convert object to string recursively with all properties.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>object</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>to convert to string</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <p>a standard string representation.</p>
-</div>
-
-
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="~reduce"><span class="type-signature">&lt;inner> </span>reduce(object, res, fn)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Utility function that performs reduce operation on properties of an object</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>object</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>to reduce</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>res</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>initial value for result</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>fn</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>reduction function</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <p>the result of applying res = fn(res, <name>, <value>) over all properties of the object.</p>
-</div>
-
-
-
-
-        
 
     
 </dd>
