@@ -40,7 +40,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-operations-Arr.html">operations~Arr</a></li><li><a href="module-operations-ElementFactory.html">operations~ElementFactory</a></li><li><a href="module-operations-Ins.html">operations~Ins</a></li><li><a href="module-operations-Map.html">operations~Map</a></li><li><a href="module-operations-Mrg.html">operations~Mrg</a></li><li><a href="module-operations-Op.html">operations~Op</a></li><li><a href="module-operations-Row.html">operations~Row</a></li><li><a href="module-operations-Rpl.html">operations~Rpl</a></li><li><a href="module-options-Options.html">options~Options</a></li><li><a href="module-patch-Patch.html">patch~Patch</a></li>
+					<li><a href="module-operations-Arr.html">operations~Arr</a></li><li><a href="module-operations-ElementFactory.html">operations~ElementFactory</a></li><li><a href="module-operations-Ins.html">operations~Ins</a></li><li><a href="module-operations-Map.html">operations~Map</a></li><li><a href="module-operations-Mrg.html">operations~Mrg</a></li><li><a href="module-operations-Op.html">operations~Op</a></li><li><a href="module-operations-Row.html">operations~Row</a></li><li><a href="module-operations-Rpl.html">operations~Rpl</a></li><li><a href="module-options-Options.html">options~Options</a></li>
 				</ul>
 			</li>
 			
@@ -134,20 +134,337 @@
     
 
     
-        <h3 class="subsection-title">Classes</h3>
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
 
         <dl>
-            <dt><a href="module-patch-Patch.html">Patch</a></dt>
-            <dd></dd>
+            
+<hr>
+<dt>
+    <h4 class="name" id="~_compareMaps"><span class="type-signature">&lt;inner> </span>_compareMaps()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Patch for objects</p>
+<p>Functions that should allow us to compare two objects, compute a difference, send the difference over the wire, and apply a patch at the far end
+to sync a remote object with the changes.</p>
+<p>For 'patch' to work properly, the patched object (and child objects) should have a static 'fromJSON' method somewhere in its inheritance tree.
+You may also implement a static 'getAttrProps(name)' object, which may return a variety of options that are applied to
+child properties with the given name (see DEFAULT_OPTIONS).</p>
+<p>Won't work with cyclic data structures.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="~compare"><span class="type-signature">&lt;inner> </span>compare(a, b, options)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Compare two object to produce a patch object.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>First object for comparison</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>b</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Second object for comparison</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>(optional) options to control comparison operation (see DEFAULT_OPTIONS)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="~fromJSON"><span class="type-signature">&lt;inner> </span>fromJSON()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Convert over-the-wire JSON format back into typed patch object</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
         </dl>
-    
-
-    
-
-    
-
-    
-
     
 
     
@@ -201,7 +518,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
-		on 2017-08-23T10:21:45-04:00
+		on 2017-08-24T00:24:05-04:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
