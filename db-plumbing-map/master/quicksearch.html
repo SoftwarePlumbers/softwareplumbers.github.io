@@ -1,0 +1,31 @@
+<html>
+<head>
+</head>
+<body style="background: transparent;">
+    <script src="scripts/docstrap.lib.js"></script>
+    <script src="scripts/lunr.min.js"></script>
+    <script src="scripts/fulltext-search.js"></script>
+
+    <script type="text/x-docstrap-searchdb">
+    {"modules.list.html":{"id":"modules.list.html","title":"Modules","body":" db-plumbing-map Modules db-plumbing-map Classes db-plumbing-map~DoesNotExistdb-plumbing-map~Store Modules Classes DoesNotExist Store × Search results Close "},"classes.list.html":{"id":"classes.list.html","title":"Classes","body":" db-plumbing-map Modules db-plumbing-map Classes db-plumbing-map~DoesNotExistdb-plumbing-map~Store Classes Classes DoesNotExist Store × Search results Close "},"index.html":{"id":"index.html","title":"Index","body":" db-plumbing-map Modules db-plumbing-map Classes db-plumbing-map~DoesNotExistdb-plumbing-map~Store DB Plumbing (Map)Map-based in-memory database. Tl;DRlet store = new Store(Object, object=&gt;object.key); store.update({ key: 1, a: &quot;hello&quot;, b: &quot;sailor&quot;}); value=store.find(1);and value should be {key:1, a:&quot;hello&quot;, b:&quot;sailor&quot;} The store supports remove, find by criteria, and remove by criteria operations. It also supports a bulked update operation based on the typed-patch library. This implementation is intended primarily as a test stub for applications using db-plumbing-mongo or db-plumbing-rest. For the latest API documentation see The Software Plumbers Site × Search results Close "},"module-db-plumbing-map.html":{"id":"module-db-plumbing-map.html","title":"Module: db-plumbing-map","body":" db-plumbing-map Modules db-plumbing-map Classes db-plumbing-map~DoesNotExistdb-plumbing-map~Store Module: db-plumbing-map Classes DoesNotExist Store Methods &lt;inner&gt; defaultComparator(key, a, b) Default comparison operation. Parameters: Name Type Description key {Function{} function that extracts a key value (number or string) from a stored object a First object b Second object Returns: -1, 1, 0 depending on whether a &lt; b, b &lt; a, or a == b &lt;inner&gt; logValue(e) Utility function used to inject log operations into promise chain Parameters: Name Type Description e value to log Returns: e × Search results Close "},"module-db-plumbing-map-DoesNotExist.html":{"id":"module-db-plumbing-map-DoesNotExist.html","title":"Class: DoesNotExist","body":" db-plumbing-map Modules db-plumbing-map Classes db-plumbing-map~DoesNotExistdb-plumbing-map~Store Class: DoesNotExist db-plumbing-map~ DoesNotExist Error type (used when find() cannot return) new DoesNotExist(key) Constructor Parameters: Name Type Description key key for which an item cannot be found × Search results Close "},"module-db-plumbing-map-Store.html":{"id":"module-db-plumbing-map-Store.html","title":"Class: Store","body":" db-plumbing-map Modules db-plumbing-map Classes db-plumbing-map~DoesNotExistdb-plumbing-map~Store Class: Store db-plumbing-map~ Store In-memory document store. Essentially just some utility functions wrapping an ES6 Map. Other implementations (db-plumbing-mongo etc) have the same signature and should work as a drop-in replacement. new Store(type, key, comparator) Constructor. Only the first parameter is mandatory. Default behavior is to look for an attribute uid in the object to use as the unique key, and assume uid can be compared with standard comparison operations (basically it must be a string or a number). Parameters: Name Type Description type function a constructor (perhaps a base class constructor) for elements in this store. key function a function that extracts a unique key from objects in this store comparator function a function that compares two objects in this store Members all Get all objects in the store Methods bulk(patch) Execute multiple update operations on the store Parameters: Name Type Description patch Patch.Operation Information to update in patch format. See: Typed Patch find(key) Find an object by its unique key Parameters: Name Type Description key Unique object identifier Returns: A promise, either resovled with the object stored for the given key, or rejected with a DoesNotExist error. findAll(index) Find objects by index Parameters: Name Type Description index function A function that takes a value and a stored object and returns true or false Returns: A promise of an array containing all elements for which the function returns true for the given value remove(key) Remove an object from the store. Parameters: Name Type Description key unique identifier of object to remove. Returns: a promise that resolves to true if the object is removed, false otherwise. removeAll(index, a) Remove multiple objects from the store Parameters: Name Type Description index function a function that takes a value and an object from the store and returns true or false a value that determines which objects are removed. update(object) Update or add an object in the store. Parameters: Name Type Description object to add or update. Returns: a resolved promise. × Search results Close "}}
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            Searcher.init();
+        });
+
+        $(window).on("message", function(msg) {
+            var msgData = msg.originalEvent.data;
+
+            if (msgData.msgid != "docstrap.quicksearch.start") {
+                return;
+            }
+
+            var results = Searcher.search(msgData.searchTerms);
+
+            window.parent.postMessage({"results": results, "msgid": "docstrap.quicksearch.done"}, "*");
+        });
+    </script>
+</body>
+</html>
