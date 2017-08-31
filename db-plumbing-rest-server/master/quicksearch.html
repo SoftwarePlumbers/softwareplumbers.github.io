@@ -1,0 +1,31 @@
+<html>
+<head>
+</head>
+<body style="background: transparent;">
+    <script src="scripts/docstrap.lib.js"></script>
+    <script src="scripts/lunr.min.js"></script>
+    <script src="scripts/fulltext-search.js"></script>
+
+    <script type="text/x-docstrap-searchdb">
+    {"classes.list.html":{"id":"classes.list.html","title":"Classes","body":" db-plumbing-rest-server Classes IndexMapRouter Classes Classes IndexMap Router × Search results Close "},"index.html":{"id":"index.html","title":"Index","body":" db-plumbing-rest-server Classes IndexMapRouter DB Plumbing (REST Server)REST interface to db-plumbing-map or db-plumbing-mongo document stores. Tl;DRconst app=express() let store = new Store(Object, object=&gt;object.key); app.use(new Router(store).routes())and the following methods of store will be exposed as service endpoints: Route HTTP method /findAll/:index GET findAll /removeAll/:index GET removeAll /items/:uid GET find /items/:uid PUT update /items/:uid DELETE remove /bulk POST bulk The store supports remove, find by criteria, and remove by criteria operations. It also supports a bulked update operation based on the typed-patch library. This implementation is intended to exppose data provided by db-plumbing-mongo or db-plumbing-map. For the latest API documentation see The Software Plumbers Site × Search results Close "},"IndexMap.html":{"id":"IndexMap.html","title":"Class: IndexMap","body":" db-plumbing-rest-server Classes IndexMapRouter Class: IndexMap IndexMap Configure formats in which indexes and keys are parsed from incoming requests new IndexMap() Methods mapKey(param_map) Specify function to parse key values from a request string. Parameters: Name Type Description param_map key to convert strings to key values. mapParameters(index, param_map) Map an index filter function to a function that can extract suitable parameters from a request Parameters: Name Type Description index function a named function (value,item)=&gt;boolean that can filter items in the store param_map {Function) a function req=&gt;value that can extract filter parameters from a request Returns: this index map (for fluent construction) × Search results Close "},"Router.html":{"id":"Router.html","title":"Class: Router","body":" db-plumbing-rest-server Classes IndexMapRouter Class: Router Router Maps a Store to a number of API endpoints using an express router. new Router(store, index) Construct a router Parameters: Name Type Description store A document store used to back this service index IndexMap maps index filter function name (used in stores) to a function which extracts filter values from a request. Methods bulk(res) Execute a bulk update. Parameters: Name Type Description res response find(req) find a individual record Parameters: Name Type Description req request including unique record id findAll(req, res) Find records by index. Parameters: Name Type Description req request including index name and query parameters res response json array including results remove(res) Remove an individual record. Parameters: Name Type Description res response status 200 if executed successfully removeAll(req, res) Remove records by index. Parameters: Name Type Description req request including index name and query parameters res response status 200 if executed successfully routes() Set up appropriate routes for each operation. Route HTTP method /findAll/:index GET findAll /removeAll/:index GET removeAll /items/:uid GET find /items/:uid PUT update /items/:uid DELETE remove /bulk POST bulk Returns: an express router. update(res) Update or insert an individual record. Parameters: Name Type Description res response × Search results Close "}}
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            Searcher.init();
+        });
+
+        $(window).on("message", function(msg) {
+            var msgData = msg.originalEvent.data;
+
+            if (msgData.msgid != "docstrap.quicksearch.start") {
+                return;
+            }
+
+            var results = Searcher.search(msgData.searchTerms);
+
+            window.parent.postMessage({"results": results, "msgid": "docstrap.quicksearch.done"}, "*");
+        });
+    </script>
+</body>
+</html>
