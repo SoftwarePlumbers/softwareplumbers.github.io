@@ -1,0 +1,31 @@
+<html>
+<head>
+</head>
+<body style="background: transparent;">
+    <script src="scripts/docstrap.lib.js"></script>
+    <script src="scripts/lunr.min.js"></script>
+    <script src="scripts/fulltext-search.js"></script>
+
+    <script type="text/x-docstrap-searchdb">
+    {"classes.list.html":{"id":"classes.list.html","title":"Classes","body":" immutable-es6-map Classes AbstractMapImmutableMapLazyMap Classes Classes AbstractMap ImmutableMap LazyMap × Search results Close "},"index.html":{"id":"index.html","title":"Index","body":" immutable-es6-map Classes AbstractMapImmutableMapLazyMap Immutable MapImmutable map object maximally compatible with (and backed by) an ES6 Map Summaryconst TEST_DATA = ; let map1 = new ImmutableMap([ [ 'foo', 'bar' ], [ 'dinkum', 'thinkum' ], [ 'wyoming', 'knot' ], [ 'dick', 'seaton' ] ]); // chain update operations let map2 = map1.set('hercules', 'morse').delete('dinkum').set('dick','grayson'); // map1 is unchangedThe map API is the same as for the ES6 map with two notable exceptions; the clear() method is missing and the delete(key) operation returns a copy of the map (with item removed) rather than a true/false indicator of whether the remove was susccessful. The set operation also returns a copy of the map operated on (with the update applied) rather than a reference to the original map. For the latest API documentation see The Software Plumbers Site × Search results Close "},"AbstractMap.html":{"id":"AbstractMap.html","title":"Class: AbstractMap","body":" immutable-es6-map Classes AbstractMapImmutableMapLazyMap Class: AbstractMap AbstractMap Abstract map provides most map functions. Map API is as close as possible to the vanilla ES6 Map object. However, the clear() function is omitted, as clearly (ba-dum-tsh) that method makes no sense on an immutable object. 'delete' is also modified to return a copy of the original map (with element deleted) rather than 'true' or 'false' as provided in the vanilla ES6 map. new AbstractMap() Methods delete(key) Remove the value stored for a key. A lazy copy is implemented; the map data will not actually be copied until an attempt is made to read it. Parameters: Name Type Description key to remove Returns: a copy of this map with the specified key/value mapping removed entries() Get an iterator over map entries forEach(func) Execute a function for each mapped value Parameters: Name Type Description func function function to execute get(key) Get the value for a given key Parameters: Name Type Description key to look for Returns: mapped value, or undefined has(key) Check to see if a given key is stored in the map Parameters: Name Type Description key to look for Returns: true if map contains the given key keys() Get an iterator over mapped keys set(key, value) Set a value for a key. A lazy copy is implemented; the map data will not actually be copied until an attempt is made to read it. Parameters: Name Type Description key for value value value to store for key Returns: a copy of this map with the new key/value mapping included values() Get an iterator over mapped values × Search results Close "},"ImmutableMap.html":{"id":"ImmutableMap.html","title":"Class: ImmutableMap","body":" immutable-es6-map Classes AbstractMapImmutableMapLazyMap Class: ImmutableMap ImmutableMap Immutable Map extends AbstractMap to wrap an ES6 mutable map new ImmutableMap(data) Constructor If a map is passed in, simply wraps that map (so the resulting immutable map is basically just a view on the parameter map). Otherwise, parameter is assumed to be an iterable over key/value pairs (i.e. [[k,v]...]) Parameters: Name Type Description data Iterable over key/value pairs, Map, nothing (defauts to empty map) Methods builder() Builder creates a mutable map as a copy of this map. Builder is invoked by the set and delete operations of AbstractMap to create a mutable map for update. × Search results Close "},"LazyMap.html":{"id":"LazyMap.html","title":"Class: LazyMap","body":" immutable-es6-map Classes AbstractMapImmutableMapLazyMap Class: LazyMap LazyMap LazyMap implemnents an lazily constructed mutable map. new LazyMap(builder) Constructor Parameters: Name Type Description builder function a function that builds a mutuable map to back this immutable map. Members data Accessor to get underlying map data if builder has not already been invoked, invoke it and cache the result. × Search results Close "}}
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            Searcher.init();
+        });
+
+        $(window).on("message", function(msg) {
+            var msgData = msg.originalEvent.data;
+
+            if (msgData.msgid != "docstrap.quicksearch.start") {
+                return;
+            }
+
+            var results = Searcher.search(msgData.searchTerms);
+
+            window.parent.postMessage({"results": results, "msgid": "docstrap.quicksearch.done"}, "*");
+        });
+    </script>
+</body>
+</html>
