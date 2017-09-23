@@ -33,7 +33,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Query.html">Query</a></li><li><a href="Range.html">Range</a></li>
+					<li><a href="Comparator.html">Comparator</a></li><li><a href="Query.html">Query</a></li><li><a href="Range.html">Range</a></li>
 				</ul>
 			</li>
 			
@@ -183,6 +183,100 @@ usually of some subclass of range).</p></div>
     
 
     
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+<hr>
+<dt class="name" id=".OPERATORS">
+    <h4 id=".OPERATORS"><span class="type-signature">&lt;static> </span>OPERATORS<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Object mapping of range operators to constructor functions</p>
+<table>
+<thead>
+<tr>
+<th>Operator String</th>
+<th>Constructor Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&quot;&gt;&quot;</td>
+<td>Range.greaterThan</td>
+</tr>
+<tr>
+<td>&quot;&lt;&quot;</td>
+<td>Range.LessThan</td>
+</tr>
+<tr>
+<td>&quot;&gt;=&quot;</td>
+<td>Range.greaterThanOrEqual</td>
+</tr>
+<tr>
+<td>&quot;&lt;=&quot;</td>
+<td>Range.lessThanOrEqual</td>
+</tr>
+<tr>
+<td>&quot;=&quot;</td>
+<td>Range.equal</td>
+</tr>
+</tbody>
+</table>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        </dl>
+    
 
     
         <h3 class="subsection-title">Methods</h3>
@@ -261,7 +355,7 @@ usually of some subclass of range).</p></div>
                 </td>
             
 
-            <td class="description last"><p>lower range boundary</p></td>
+            <td class="description last"><p>lower range boundary (inclusive)</p></td>
         </tr>
 
     
@@ -291,7 +385,7 @@ usually of some subclass of range).</p></div>
                 </td>
             
 
-            <td class="description last"><p>upper range boundary</p></td>
+            <td class="description last"><p>upper range boundary (exclusive)</p></td>
         </tr>
 
     
@@ -304,7 +398,7 @@ usually of some subclass of range).</p></div>
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type"><a href="Range.html#~OrderingFunction">Range~OrderingFunction</a></span>
 
 
 
@@ -573,7 +667,7 @@ usually of some subclass of range).</p></div>
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type"><a href="Range.html#~OrderingFunction">Range~OrderingFunction</a></span>
 
 
 
@@ -679,6 +773,147 @@ usually of some subclass of range).</p></div>
             
 <hr>
 <dt>
+    <h4 class="name" id=".fromBounds"><span class="type-signature">&lt;static> </span>fromBounds(bounds)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Create a range from a bounds object </p>
+<p>A bounds object is an object in the form { &quot;<operator>&quot; : value } (e.g. { &quot;&gt;&quot; : 7 }). Returns
+null if obj is not a valid bounds object.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>bounds</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Range.html#~Bounds">Range~Bounds</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>object</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>a range</p>
+</div>
+
+
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
     <h4 class="name" id=".greaterThan"><span class="type-signature">&lt;static> </span>greaterThan(value [, order])</h4>
     
     
@@ -762,7 +997,185 @@ usually of some subclass of range).</p></div>
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type"><a href="Range.html#~OrderingFunction">Range~OrderingFunction</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    DEFAULT_ORDER
+                
+                </td>
+            
+
+            <td class="description last"><p>compare two values and return true if the first is less than the second.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".greaterThanOrEqual"><span class="type-signature">&lt;static> </span>greaterThanOrEqual(value [, order])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Create a range containing values greater than or equal to a given value</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>range boundary</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>order</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Range.html#~OrderingFunction">Range~OrderingFunction</a></span>
 
 
 
@@ -1073,7 +1486,185 @@ usually of some subclass of range).</p></div>
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type"><a href="Range.html#~OrderingFunction">Range~OrderingFunction</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    DEFAULT_ORDER
+                
+                </td>
+            
+
+            <td class="description last"><p>compare two values and return true if the first is less than the second.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".lessThanOrEqual"><span class="type-signature">&lt;static> </span>lessThanOrEqual(value [, order])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Create a range containing values less than or equal to a given value</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>range boundary</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>order</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Range.html#~OrderingFunction">Range~OrderingFunction</a></span>
 
 
 
@@ -1168,6 +1759,247 @@ usually of some subclass of range).</p></div>
     
 
     
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        <dl>
+                
+<hr>
+<dt class="name" id="~Bounds">
+    <h4 id="~Bounds">Bounds</h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Bounds object</p>
+<p>An object with a single property key that is one of the operators defined in Range.OPERATORS. The value
+of the property should be comparable.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Object.&lt;string, <a href="global.html#Comparable">Comparable</a>></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+            
+                
+<hr>
+<dt>
+    <h4 class="name" id="~OrderingFunction"><span class="type-signature"></span>OrderingFunction(a, b)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Compare two values and return the lesser</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>first value to compare</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>b</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>second value to compare</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>true if a &lt; b</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+            </dl>
+    
 
     
 </article>
@@ -1218,7 +2050,7 @@ usually of some subclass of range).</p></div>
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2017-09-22T14:03:54-04:00
+		on 2017-09-23T09:08:24-04:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
