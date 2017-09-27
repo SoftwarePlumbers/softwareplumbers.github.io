@@ -33,14 +33,14 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Comparator.html">Comparator</a></li><li><a href="Query.html">Query</a></li><li><a href="Range.html">Range</a></li>
+					<li><a href="Comparator.html">Comparator</a></li><li><a href="Query.html">Query</a></li><li><a href="QueryFormatter.html">QueryFormatter</a></li><li><a href="Range.html">Range</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#DEFAULT_ORDER">DEFAULT_ORDER</a></li>
+					<li><a href="global.html#DEFAULT_ORDER">DEFAULT_ORDER</a></li><li><a href="global.html#isComparable">isComparable</a></li>
 				</ul>
 			</li>
 			
@@ -117,7 +117,7 @@ expression like <code>a and (c or d)</code> instead of <code>(a and c) or (a and
     
     <div class="description">
         <p>Construct a query from an array of cube objects.</p>
-<p>Should be considered a private constructor - use fromConstraint instead to create a query.</p>
+<p>Should be considered a private constructor - use from instead to create a query.</p>
     </div>
     
 
@@ -247,6 +247,70 @@ expression like <code>a and (c or d)</code> instead of <code>(a and c) or (a and
     
 
     
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+<hr>
+<dt class="name" id=".DEFAULT_FORMAT">
+    <h4 id=".DEFAULT_FORMAT"><span class="type-signature">&lt;static> </span>DEFAULT_FORMAT<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Get the default query formatter</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        </dl>
+    
 
     
         <h3 class="subsection-title">Methods</h3>
@@ -255,7 +319,7 @@ expression like <code>a and (c or d)</code> instead of <code>(a and c) or (a and
             
 <hr>
 <dt>
-    <h4 class="name" id=".fromConstraint"><span class="type-signature">&lt;static> </span>fromConstraint(obj)</h4>
+    <h4 class="name" id=".from"><span class="type-signature">&lt;static> </span>from(obj)</h4>
     
     
 </dt>
@@ -392,7 +456,7 @@ query applies all the following constraints: w &gt;= 3, x == 3, y &gt;= 3, y &lt
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">1	* Query.fromConstraint({ w: [3,], x : 3, y : [3,7], z: [,7]})</pre>
+    <pre class="sunlight-highlight-javascript">1	* Query.from({ w: [3,], x : 3, y : [3,7], z: [,7]})</pre>
 
 
     
@@ -861,6 +925,846 @@ query applies all the following constraints: w &gt;= 3, x == 3, y &gt;= 3, y &lt
             
 <hr>
 <dt>
+    <h4 class="name" id="contains"><span class="type-signature"></span>contains(obj)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Establish if this results of this query would be a superset of the given constraint or query.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>obj</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Query.html#~ConstraintObject">Query~ConstraintObject</a></span>
+|
+
+<span class="param-type"><a href="Query.html">Query</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the constraint or query</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>true if obj is a subset of this query.</p>
+</div>
+
+
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="containsConstraint"><span class="type-signature"></span>containsConstraint(constraint)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Establish if this results of this query would be a superset of the given constraint.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>constraint</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Query.html#~ConstraintObject">Query~ConstraintObject</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the constraint</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>true if constraint is a subset of this query.</p>
+</div>
+
+
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="containsQuery"><span class="type-signature"></span>containsQuery(other_query)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Establish if this results of this query would be a superset of the given query.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>other_query</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Query.html">Query</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the other query</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>true if other query is a subset of this one.</p>
+</div>
+
+
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="equals"><span class="type-signature"></span>equals(obj)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Establish if this results of this query would be a superset of the given constraint or query.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>obj</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Query.html#~ConstraintObject">Query~ConstraintObject</a></span>
+|
+
+<span class="param-type"><a href="Query.html">Query</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the constraint or query</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>true if obj is a subset of this query.</p>
+</div>
+
+
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="equalsConstraint"><span class="type-signature"></span>equalsConstraint(constraint)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Establish if this results of this query would be the same as for a query created from the given constraint.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>constraint</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Query.html#~ConstraintObject">Query~ConstraintObject</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the constraint</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>true if constraint is the same as this query.</p>
+</div>
+
+
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="equalsQuery"><span class="type-signature"></span>equalsQuery(other_query)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Establish if this result of this query is the same as the given query.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>other_query</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Query.html">Query</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the other query</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>true if other query is a subset of this one.</p>
+</div>
+
+
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
     <h4 class="name" id="factor"><span class="type-signature"></span>factor(constraint)</h4>
     
     
@@ -872,12 +1776,12 @@ query applies all the following constraints: w &gt;= 3, x == 3, y &gt;= 3, y &lt
         <p>Attempt to simplify a query by removing a common factor from the canonical form.</p>
 <p>Given something like: </p>
 <pre class="prettyprint source"><code>    let query = Query
-        .fromConstraint({x: 2, y : [3,4], z : 8})
+        .from({x: 2, y : [3,4], z : 8})
         .or({x:2, y: [,4], z: 7})
         .or({x:3, y: [3,], z: 7});
 
-    let { factored, remainder } = query.factor({ x: 2});</code></pre><p>factored should equal <code>Query.fromConstraint({y : [3,4], z : 8}).or({y: [,4], z: 7})</code> and
-remainder should equal <code>Query.fromConstraint({x:3, y: [3,], z: 7})</code></p>
+    let { factored, remainder } = query.factor({ x: 2});</code></pre><p>factored should equal <code>Query.from({y : [3,4], z : 8}).or({y: [,4], z: 7})</code> and
+remainder should equal <code>Query.from({x:3, y: [3,], z: 7})</code></p>
     </div>
     
 
@@ -1656,7 +2560,7 @@ remainder should equal <code>Query.fromConstraint({x:3, y: [3,], z: 7})</code></
             
 <hr>
 <dt>
-    <h4 class="name" id="toExpression"><span class="type-signature"></span>toExpression(andExpr, orExpr, operExpr)</h4>
+    <h4 class="name" id="toExpression"><span class="type-signature"></span>toExpression( [formatter] [, context])</h4>
     
     
 </dt>
@@ -1687,192 +2591,12 @@ remainder should equal <code>Query.fromConstraint({x:3, y: [3,], z: 7})</code></
         <th>Type</th>
 
         
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>andExpr</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Query.html#~compoundExprBuilder">Query~compoundExprBuilder</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Generate an 'and' expression from several subexpressions</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>orExpr</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Query.html#~compoundExprBuilder">Query~compoundExprBuilder</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Generate an 'or' expression from several subexpressions</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>operExpr</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#atomicExprBuilder">atomicExprBuilder</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Generate a constraint expression from the name of the property, the operator type, and a value</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-        </dl>
-    
-
-    
-        <h3 class="subsection-title">Type Definitions</h3>
-
-        <dl>
-                
-<hr>
-<dt>
-    <h4 class="name" id="~compoundExprBuilder"><span class="type-signature"></span>compoundExprBuilder(subexpressions)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Callback to build an compound expression from several sub-expressions.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
         <th>Argument</th>
         
 
         
+        <th>Default</th>
+        
 
         <th class="last">Description</th>
     </tr>
@@ -1883,13 +2607,13 @@ remainder should equal <code>Query.fromConstraint({x:3, y: [3,], z: 7})</code></
 
         <tr>
             
-                <td class="name"><code>subexpressions</code></td>
+                <td class="name"><code>formatter</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#Expression">Expression</a></span>
+<span class="param-type"><a href="QueryFormatter.html">QueryFormatter</a></span>
 
 
 
@@ -1899,18 +2623,62 @@ remainder should equal <code>Query.fromConstraint({x:3, y: [3,], z: 7})</code></
             
                 <td class="attributes">
                 
-
+                    &lt;optional><br>
                 
 
                 
-                    &lt;repeatable><br>
+
                 
                 </td>
             
 
             
+                <td class="default">
+                
+                    Query~DEFAULT_FORMATTER
+                
+                </td>
+            
 
-            <td class="description last"><p>subexpressions from which compound expression is built</p></td>
+            <td class="description last"><p>Generates expressions from element of a query</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Context</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>context information</p></td>
         </tr>
 
     
@@ -1974,7 +2742,7 @@ remainder should equal <code>Query.fromConstraint({x:3, y: [3,], z: 7})</code></
     
             
 <div class="param-desc">
-    <p>a compound expression.</p>
+    <p>expression - result expression. Typically a string but can be any type.</p>
 </div>
 
 
@@ -1985,7 +2753,7 @@ remainder should equal <code>Query.fromConstraint({x:3, y: [3,], z: 7})</code></
     </dt>
     <dd>
         
-<span class="param-type"><a href="global.html#Expression">Expression</a></span>
+<span class="param-type">Expression</span>
 
 
 
@@ -1998,7 +2766,13 @@ remainder should equal <code>Query.fromConstraint({x:3, y: [3,], z: 7})</code></
     
 </dd>
 
-            
+        </dl>
+    
+
+    
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        <dl>
                 
 <hr>
 <dt class="name" id="~ConstraintObject">
@@ -2269,7 +3043,7 @@ constraint.</p>
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2017-09-23T09:08:24-04:00
+		on 2017-09-27T08:06:48-04:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

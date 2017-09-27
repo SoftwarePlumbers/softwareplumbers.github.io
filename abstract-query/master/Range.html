@@ -33,14 +33,14 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Comparator.html">Comparator</a></li><li><a href="Query.html">Query</a></li><li><a href="Range.html">Range</a></li>
+					<li><a href="Comparator.html">Comparator</a></li><li><a href="Query.html">Query</a></li><li><a href="QueryFormatter.html">QueryFormatter</a></li><li><a href="Range.html">Range</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#DEFAULT_ORDER">DEFAULT_ORDER</a></li>
+					<li><a href="global.html#DEFAULT_ORDER">DEFAULT_ORDER</a></li><li><a href="global.html#isComparable">isComparable</a></li>
 				</ul>
 			</li>
 			
@@ -485,6 +485,30 @@ usually of some subclass of range).</p></div>
     
 
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>a Range object</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Range.html">Range</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
 
     
 </dd>
@@ -493,7 +517,7 @@ usually of some subclass of range).</p></div>
             
 <hr>
 <dt>
-    <h4 class="name" id=".equals"><span class="type-signature">&lt;static> </span>equals()</h4>
+    <h4 class="name" id=".equals"><span class="type-signature">&lt;static> </span>equals(value)</h4>
     
     
 </dt>
@@ -510,6 +534,50 @@ usually of some subclass of range).</p></div>
     
 
     
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>value to search for</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -563,6 +631,30 @@ usually of some subclass of range).</p></div>
     
 
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>a Range object</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Range.html">Range</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
 
     
 </dd>
@@ -580,58 +672,19 @@ usually of some subclass of range).</p></div>
     
     <div class="description">
         <p>Create a range.</p>
-<p>Specified bounds may be an array, an object, or a range</p>
-    </div>
-    
+<p>Specified bounds may be an array, a <a href="global.html#Comparable">Comparable</a> object, a Bounds object, a  <span class="param-type">Bounds</span>
+|
 
-    
+<span class="param-type"><a href="Query.html">Query</a></span>
+|
 
-    
+<span class="param-type">Array</span>
+|
 
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Argument</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>bounds</code></td>
-            
-
-            <td class="type">
-            
-                
 <span class="param-type"><a href="Range.html">Range</a></span>
 |
 
 <span class="param-type">Object</span>
-|
-
-<span class="param-type">Array</span>
 
 
 
@@ -782,7 +835,7 @@ usually of some subclass of range).</p></div>
     
     <div class="description">
         <p>Create a range from a bounds object </p>
-<p>A bounds object is an object in the form { &quot;<operator>&quot; : value } (e.g. { &quot;&gt;&quot; : 7 }). Returns
+<p>A bounds object is an object in the form { &quot;<operator>&quot; : value  (e.g. { &quot;&gt;&quot; : 7 }). Returns
 null if obj is not a valid bounds object.</p>
     </div>
     
@@ -1084,6 +1137,30 @@ null if obj is not a valid bounds object.</p>
     
 
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>a Range object</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Range.html">Range</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
 
     
 </dd>
@@ -1262,6 +1339,30 @@ null if obj is not a valid bounds object.</p>
     
 
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>a Range object</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Range.html">Range</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
 
     
 </dd>
@@ -1573,6 +1674,30 @@ null if obj is not a valid bounds object.</p>
     
 
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>a Range object</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Range.html">Range</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
 
     
 </dd>
@@ -1751,6 +1876,187 @@ null if obj is not a valid bounds object.</p>
     
 
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>a Range object</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Range.html">Range</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".subquery"><span class="type-signature">&lt;static> </span>subquery(query)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Create a range with a subquery</p>
+<p>Objects we are querying may be complex. Where an object property contains an object or an array, we may
+what to execute a subquery on data contained by that object or array in order to determine if the origninal
+high-level object is matched or not. A trivial case would be a constraint that reads something like:</p>
+<pre class="prettyprint source"><code>    {name : { last: 'Essex'}}</code></pre><p>to select objects with name.last equal to 'Essex'. This constraint can be constructed with: </p>
+<pre class="prettyprint source"><code>    { name: Range.subquery(Query.from({ last: Range.equals('Essex') } ) ) }</code></pre><p>However Range.from({last: 'Essex'}) should in most cases do the right thing more succinctly.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>query</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Query.html">Query</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Subquery (which must select data for this range criterion to be satisfied)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>a Range object</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Range.html">Range</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
 
     
 </dd>
@@ -2050,7 +2356,7 @@ of the property should be comparable.</p>
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2017-09-23T09:08:24-04:00
+		on 2017-09-27T08:06:48-04:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
