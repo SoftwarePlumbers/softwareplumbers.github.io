@@ -33,14 +33,14 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Comparator.html">Comparator</a></li><li><a href="Query.html">Query</a></li><li><a href="QueryFormatter.html">QueryFormatter</a></li><li><a href="Range.html">Range</a></li>
+					<li><a href="Comparator.html">Comparator</a></li><li><a href="Param.html">Param</a></li><li><a href="Query.html">Query</a></li><li><a href="QueryFormatter.html">QueryFormatter</a></li><li><a href="Range.html">Range</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#DEFAULT_ORDER">DEFAULT_ORDER</a></li><li><a href="global.html#isComparable">isComparable</a></li>
+					<li><a href="global.html#$">$</a></li><li><a href="global.html#DEFAULT_ORDER">DEFAULT_ORDER</a></li><li><a href="global.html#FACTORY_HANDLER">FACTORY_HANDLER</a></li><li><a href="global.html#isComparable">isComparable</a></li>
 				</ul>
 			</li>
 			
@@ -261,6 +261,68 @@ expression like <code>a and (c or d)</code> instead of <code>(a and c) or (a and
     
     <div class="description">
         <p>Get the default query formatter</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="predicate">
+    <h4 id="predicate"><span class="type-signature"></span>predicate<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Convenience property for filtering</p>
+<p>Given a query, query.predicate is equal to item=&gt;this.contains(item);</p>
+<pre class="prettyprint source"><code>@ returns {Function} a function that returns true if its parameter is matched by this query.</code></pre>
     </div>
     
 
@@ -925,6 +987,164 @@ query applies all the following constraints: w &gt;= 3, x == 3, y &gt;= 3, y &lt
             
 <hr>
 <dt>
+    <h4 class="name" id="bind"><span class="type-signature"></span>bind(parameter)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Bind a set of paramters to a query. </p>
+<p>Property values from the parameters object are used to fill in values for any parameters that
+this query was created. So:</p>
+<pre class="prettyprint source"><code>Query
+    .from({ height : [$.floor, $.ceiling]})
+    .bind({ floor:12, ceiling: 16})
+    .toExpression();</code></pre><p>will return something like <code>height &gt;= 12 and height &lt; 16</code>.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>parameter</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>values</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>new query, with parameter values set.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Query.html">Query</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
     <h4 class="name" id="contains"><span class="type-signature"></span>contains(obj)</h4>
     
     
@@ -934,6 +1154,10 @@ query applies all the following constraints: w &gt;= 3, x == 3, y &gt;= 3, y &lt
     
     <div class="description">
         <p>Establish if this results of this query would be a superset of the given constraint or query.</p>
+<p>Containment may be indeterminate one or more of the queries/constraints involved is parametrized and containment
+cannot be determined until the parameter values are known. However, the library works quite hard to identify 
+cases where containment can be determined even if the query is parametrized. For example:</p>
+<pre class="prettyprint source"><code>Query.from({ height: [$.param1, 12]}).contains(Query.from{ height[13, $.param2]})</code></pre><p>will return false since the two ranges can never overlap even though they are parametrized.</p>
     </div>
     
 
@@ -1052,7 +1276,7 @@ query applies all the following constraints: w &gt;= 3, x == 3, y &gt;= 3, y &lt
     
             
 <div class="param-desc">
-    <p>true if obj is a subset of this query.</p>
+    <p>true if obj is a subset of this query, false if it isn't, null if containment is indeterminate</p>
 </div>
 
 
@@ -1191,7 +1415,144 @@ query applies all the following constraints: w &gt;= 3, x == 3, y &gt;= 3, y &lt
     
             
 <div class="param-desc">
-    <p>true if constraint is a subset of this query.</p>
+    <p>true if constraint is a subset of this query, false if it isn't, null if containment is indeterminate</p>
+</div>
+
+
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="containsItem"><span class="type-signature"></span>containsItem(item)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Establish if a specific data item should be in the results of this query</p>
+<p>Very similar to <code>contains</code>. For an 'item' with simple properties, the result should be identical. 
+However an object provided to <code>contains</code> is assumed to be a constraint, so properties with array/object
+values are processed as ranges. An item provided to 'containsItem' is an individual data item to test,
+so array and object properties are not processed as ranges.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>item</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>to test</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>true, false or null</p>
 </div>
 
 
@@ -1330,7 +1691,7 @@ query applies all the following constraints: w &gt;= 3, x == 3, y &gt;= 3, y &lt
     
             
 <div class="param-desc">
-    <p>true if other query is a subset of this one.</p>
+    <p>true if other query is a subset of this one, false if it isn't, null if containment is indeterminate</p>
 </div>
 
 
@@ -3043,7 +3404,7 @@ constraint.</p>
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2017-09-27T13:06:15-04:00
+		on 2017-10-07T15:29:58-04:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

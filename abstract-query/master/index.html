@@ -33,14 +33,14 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Comparator.html">Comparator</a></li><li><a href="Query.html">Query</a></li><li><a href="QueryFormatter.html">QueryFormatter</a></li><li><a href="Range.html">Range</a></li>
+					<li><a href="Comparator.html">Comparator</a></li><li><a href="Param.html">Param</a></li><li><a href="Query.html">Query</a></li><li><a href="QueryFormatter.html">QueryFormatter</a></li><li><a href="Range.html">Range</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#DEFAULT_ORDER">DEFAULT_ORDER</a></li><li><a href="global.html#isComparable">isComparable</a></li>
+					<li><a href="global.html#$">$</a></li><li><a href="global.html#DEFAULT_ORDER">DEFAULT_ORDER</a></li><li><a href="global.html#FACTORY_HANDLER">FACTORY_HANDLER</a></li><li><a href="global.html#isComparable">isComparable</a></li>
 				</ul>
 			</li>
 			
@@ -95,34 +95,80 @@
     <section class="readme-section">
         <article><h1><img src="http://docs.softwareplumbers.com/common/img/SquareIdent-160.png" alt="Software Plumbers"> Abstract Query</h1><p>Abstract query, providing for client-side optimisation of queries.</p>
 <h2>Example</h2><pre class="prettyprint source lang-javascript"><code>
-       let query = Query
-            .from({ course: 'javascript 101', student: { age : [21,] }, grade: [,'C']})
-            .or({ course: 'medieval French poetry', student: { age: [40,65]}, grade: [,'C']})
+let query = Query
+    .from({ 
+        course: 'javascript 101', 
+        student: { age : [21,] }, 
+        grade: [,'C']
+    }).or({ 
+        course: 'medieval French poetry', 
+        student: { age: [40,65]}, 
+        grade: [,'C']
+    })
 
-    let expr = query.toExpression();</code></pre><p>and expression should equal:</p>
+let expr = query.toExpression();</code></pre><p>and expression should equal:</p>
 <p><code>grade&lt;&quot;C&quot; and (course=&quot;javascript 101&quot; and (student.age&gt;=21) or course=&quot;medieval French poetry&quot; and (student.age&gt;=40 and student.age&lt;65))</code></p>
 <p>Note that the common expression <code>grade&lt;&quot;C&quot;</code> has been factored out of the 'or'. Plainly that's not all that much use in this simple example but when programatically constructing complex queries it is extremely useful to ensure that the query that ultimately sent to the data store is reasonably concise.</p>
-<p>The <code>toExpression</code> method takes a formatter object so that query objects can be used to create any kind of output. For example:</p>
-<pre class="prettyprint source lang-javascript"><code>    const formatter = {
-        andExpr(...ands) { return ands.join(' && ') }, 
-        orExpr(...ors) { return &quot;(&quot; + ors.join(' || ') + &quot;)&quot;},
-        operExpr(dimension, operator, value, context) { 
-            return (operator === 'contains')
-                ? dimension&quot;[&quot; + value + &quot;]&quot;
-                : dimension + operator +value 
-        }
+<h2>Expression Formatters</h2><p>The <code>toExpression</code> method takes a formatter object so that query objects can be used to create any kind of output. For example:</p>
+<pre class="prettyprint source lang-javascript"><code>const formatter = {
+    andExpr(...ands) { return ands.join(' && ') }, 
+    orExpr(...ors) { return &quot;(&quot; + ors.join(' || ') + &quot;)&quot;},
+    operExpr(dimension, operator, value, context) { 
+        return (operator === 'contains')
+            ? dimension&quot;[&quot; + value + &quot;]&quot;
+            : dimension + operator +value 
+    }
 
-    let expr = query.toExpression(formatter)</code></pre><p>Will result in an expr like: </p>
+let expr = query.toExpression(formatter)</code></pre><p>Will result in an expr like: </p>
 <p><code>grade&lt;&quot;C&quot; &amp;&amp; (course=&quot;javascript 101&quot; &amp;&amp; student[age&gt;=&quot;21&quot;] || course=&quot;medieval French poetry&quot; &amp;&amp; student[age&gt;=&quot;40&quot; &amp;&amp; age&lt;&quot;65&quot;])</code></p>
-<p>The objective is to provide several different expression formatters, to support (at a minumum) constructing javascript expressions for filtering arrays, mongodb queries, and mysql queries. These formatters will be provided in separate packages so that a code can be written to the abstract-query API without creating a dependency on any given back-end store.</p>
-<p>Abstract query will also aid in building any kind of caching layer. Because abstract-query actually stores the query in an internal canoncial form, two queries can be compared for equality even if they are outwardly somewhat different. Thus:</p>
-<pre class="prettyprint source lang-javascript"><code>       let query1 = Query.from({x: [,2], y: { alpha: [2,6], beta: { nuts: 'brazil' }}});
-    let query2 = Query.from({y: { beta: { nuts: 'brazil' }, alpha: [2,6]}, x: [,2]});
-    let query3 = query1.and(query2);
-    let query4 = query2.and(query1);
+<p>The objective is to provide several different expression formatters, to support (at a minumum) constructing suitable expressions for IndexedDB, MongoDB, and MySQL. These formatters will be provided in separate packages so that a code can be written to the abstract-query API without creating a dependency on any given back-end store. </p>
+<h2>Filtering Arrays and Iterables</h2><p>Abstract Query itself provides a simple 'predicate' property that can be used to filter arrays. For example:</p>
+<pre class="prettyprint source lang-javascript"><code>let data = [ 
+    { name: 'jonathan', age: 12}, 
+    { name: 'cindy', age: 18}, 
+    { name: 'ada', age: 21} 
+];
 
-    query1.equals(query2) // true
-    query3.equals(query4) // true</code></pre><p>Even better, query.contains allows you to detect whether one query is a subset of another; thus data can be potentially be retrieved by just filtering an existing cached result set rather than requerying the data store for data we already have.</p>
+let query = Query.from({ age: [,18]});
+let result = data.filter(query.predicate);</code></pre><p>Will filter all the items with age less than 18 from the given data array. While the query API offers little advantage over an anonymous predicate function in this simple example, the ability to compose, optimise, and parametrize queries is a significant benefit in more complex cases. As more expression formatters are built, the ability to use a single query format across native data structures, front-end data stores, and back-end data stores will provide significant benefits to code readability and portability.</p>
+<h2>Parameters</h2><p>Of course, abstract query also supports parametrized queries.</p>
+<pre class="prettyprint source lang-javascript"><code>let query = Query
+    .from({ course: 'javascript 101', student: { age : [$.min_age,] }, grade: [,'C']})
+    .or({ course: 'medieval French poetry', student: { age: [$.min_age, 65]}, grade: [,'C']})
+
+let expr = query.toExpression();</code></pre><p>Will result in an expr like:</p>
+<p><code>grade&lt;&quot;C&quot; and (course=&quot;javascript 101&quot; and (student.age&gt;=$min_age) or course=&quot;medieval French poetry&quot; and (student.age&gt;=$min_age and student.age&lt;65))</code></p>
+<p>Parameters can be bound to create a new query, thus given the query above:</p>
+<pre class="prettyprint source lang-javascript"><code>let expr2 = query
+    .bind({min_age: 27})
+    .toExpression();</code></pre><p>Will result in an expr like:</p>
+<p><code>grade&lt;&quot;C&quot; and (course=&quot;javascript 101&quot; and (student.age&gt;=27) or course=&quot;medieval French poetry&quot; and (student.age&gt;=27 and student.age&lt;65))</code></p>
+<p>The library re-optimises the query when parameters are bound, and also tries quite hard to indentify redundant or mutually exclusive criteria even if a query is parametrised.</p>
+<h2>Subqueries and Child Objects</h2><p>Subqueries can be used to put conditions on sub-properties. In the below example, the subquery 'expertise_query' is used to pick items in the data array which have an object in 'expertise' which has a language property of 'java'.</p>
+<pre class="prettyprint source lang-javascript"><code>let data = [ 
+    {     name: 'jonathan',
+        age: 45 
+        expertise: [ 
+            { language:'java', level:'expert' }, 
+            { language:'javascript', level:'novice' }
+        ] 
+    }, ...other entries...
+];
+
+let expertise_query = Query.from({ language:'java' });
+
+let result = data.filter(Query
+    .from({ age: [,50], expertise: expertise_query })
+    .predicate
+);</code></pre><p>Note that it is not necessary to create a subquery as a separate object, the final query could have been written <code>Query.from({ age: [,50], expertise: { language:'java' }})</code> with identical effect. Subquery syntax can also be used to filter on properties that are not arrays (for example, the code above would work unchanged if 'expertise' was not an array but a simple object containing language and level properties).</p>
+<h2>Caching</h2><p>Abstract query will also aid in building any kind of caching layer. Because abstract-query actually stores the query in an internal canoncial form, two queries can be compared for equality even if they are outwardly somewhat different. Thus:</p>
+<pre class="prettyprint source lang-javascript"><code>let query1 = Query.from({x: [,2], y: { alpha: [2,6], beta: { nuts: 'brazil' }}});
+let query2 = Query.from({y: { beta: { nuts: 'brazil' }, alpha: [2,6]}, x: [,2]});
+let query3 = query1.and(query2);
+let query4 = query2.and(query1);
+
+query1.equals(query2) // true
+query3.equals(query4) // true</code></pre><p>Even better, query.contains allows you to detect whether one query is a subset of another; thus data can be potentially be retrieved by just filtering an existing cached result set rather than requerying the data store for data we already have.</p>
 <p>For the latest API documentation see <a href="http://docs.softwareplumbers.com/abstract-query/master">The Software Plumbers Site</a></p>
 <h2>Project Status</h2><p>Beta. The API is stabilising, and although unit test coverage could be better it seems broadly functional. We are building downstream code (the above-mentioned formatters, for example).</p></article>
     </section>
@@ -174,7 +220,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2017-09-27T13:06:15-04:00
+		on 2017-10-07T15:29:58-04:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

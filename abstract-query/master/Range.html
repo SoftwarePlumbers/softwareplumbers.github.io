@@ -33,14 +33,14 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Comparator.html">Comparator</a></li><li><a href="Query.html">Query</a></li><li><a href="QueryFormatter.html">QueryFormatter</a></li><li><a href="Range.html">Range</a></li>
+					<li><a href="Comparator.html">Comparator</a></li><li><a href="Param.html">Param</a></li><li><a href="Query.html">Query</a></li><li><a href="QueryFormatter.html">QueryFormatter</a></li><li><a href="Range.html">Range</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#DEFAULT_ORDER">DEFAULT_ORDER</a></li><li><a href="global.html#isComparable">isComparable</a></li>
+					<li><a href="global.html#$">$</a></li><li><a href="global.html#DEFAULT_ORDER">DEFAULT_ORDER</a></li><li><a href="global.html#FACTORY_HANDLER">FACTORY_HANDLER</a></li><li><a href="global.html#isComparable">isComparable</a></li>
 				</ul>
 			</li>
 			
@@ -82,7 +82,7 @@
         </h2>
         
             <div class="class-description"><p>Range is an abstract class representing a range of values.</p>
-<p>Objects extending range should implement 'contains' and 'intersect' operations.</p>
+<p>Objects extending range should implement 'contains', 'intersect', 'equals', and 'bind' operations.</p>
 <p>Not all ranges are necessarily continuous (like dates/times) or numeric. A Range may also represent
 a node in a directed graph - in which case 'contains' may mean 'is a parent of' and 'intersect' may 
 mean 'common subtree'.</p>
@@ -225,8 +225,72 @@ usually of some subclass of range).</p></div>
 <td>&quot;=&quot;</td>
 <td>Range.equal</td>
 </tr>
+<tr>
+<td>&quot;$and&quot;</td>
+<td>Range.and</td>
+</tr>
 </tbody>
 </table>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id=".UNBOUNDED">
+    <h4 id=".UNBOUNDED"><span class="type-signature">&lt;static> </span>UNBOUNDED<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Provide access to global Unbounded range</p>
     </div>
     
 
@@ -285,7 +349,7 @@ usually of some subclass of range).</p></div>
             
 <hr>
 <dt>
-    <h4 class="name" id=".between"><span class="type-signature">&lt;static> </span>between(lower, upper [, order])</h4>
+    <h4 class="name" id=".and"><span class="type-signature">&lt;static> </span>and(ranges [, order])</h4>
     
     
 </dt>
@@ -293,7 +357,8 @@ usually of some subclass of range).</p></div>
 
     
     <div class="description">
-        <p>Create a range containing values between the given values</p>
+        <p>Create a range containing values in all the given ranges</p>
+<p>TODO: consider if this needs to support Between parameters.</p>
     </div>
     
 
@@ -332,10 +397,16 @@ usually of some subclass of range).</p></div>
 
         <tr>
             
-                <td class="name"><code>lower</code></td>
+                <td class="name"><code>ranges</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="Range.html#~AnyValue">Range~AnyValue</a>></span>
+
+
+
             
             </td>
 
@@ -355,37 +426,7 @@ usually of some subclass of range).</p></div>
                 </td>
             
 
-            <td class="description last"><p>lower range boundary (inclusive)</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>upper</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>upper range boundary (exclusive)</p></td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -517,7 +558,251 @@ usually of some subclass of range).</p></div>
             
 <hr>
 <dt>
-    <h4 class="name" id=".equals"><span class="type-signature">&lt;static> </span>equals(value)</h4>
+    <h4 class="name" id=".between"><span class="type-signature">&lt;static> </span>between(lower, upper [, order])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Create a range containing values between the given values</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>lower</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Range~BetweenValue</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>lower range boundary (inclusive by default)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>upper</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Range~BetweenValue</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>upper range boundary (exclusive by default)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>order</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Range.html#~OrderingFunction">Range~OrderingFunction</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    DEFAULT_ORDER
+                
+                </td>
+            
+
+            <td class="description last"><p>compare two values and return true if the first is less than the second.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>a Range object</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Range.html">Range</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".equals"><span class="type-signature">&lt;static> </span>equals(value [, order])</h4>
     
     
 </dt>
@@ -548,7 +833,11 @@ usually of some subclass of range).</p></div>
         <th>Type</th>
 
         
+        <th>Argument</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -565,13 +854,71 @@ usually of some subclass of range).</p></div>
 
             <td class="type">
             
+                
+<span class="param-type"><a href="Range.html#~SimpleValue">Range~SimpleValue</a></span>
+
+
+
+            
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last"><p>value to search for</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>order</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Range.html#~OrderingFunction">Range~OrderingFunction</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    DEFAULT_ORDER
+                
+                </td>
+            
+
+            <td class="description last"><p>compare two values and return true if the first is less than the second.</p></td>
         </tr>
 
     
@@ -672,19 +1019,73 @@ usually of some subclass of range).</p></div>
     
     <div class="description">
         <p>Create a range.</p>
-<p>Specified bounds may be an array, a <a href="global.html#Comparable">Comparable</a> object, a Bounds object, a  <span class="param-type">Bounds</span>
+<p>Specified bounds may be an array, or any object supported by Range.fromValue</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Range~BetweenValue[]</td>
+<td>[a,b] -&gt; Range.between(Range.fromBounds(a,Range.greaterThanOrEqual, order), Range.fromBounds(b,Range.lessThan, order))</td>
+</tr>
+<tr>
+<td>Range~AnyValue</td>
+<td>Range.fromValue(object)</td>
+</tr>
+</tbody>
+</table>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>bounds</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Range.html#~AnyValue">Range~AnyValue</a></span>
 |
 
-<span class="param-type"><a href="Query.html">Query</a></span>
-|
-
-<span class="param-type">Array</span>
-|
-
-<span class="param-type"><a href="Range.html">Range</a></span>
-|
-
-<span class="param-type">Object</span>
+<span class="param-type">Array.&lt;Range~BetweenValue></span>
 
 
 
@@ -816,6 +1217,19 @@ usually of some subclass of range).</p></div>
 
 
 
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Range.html">Range</a></span>
+
+
+
+    </dd>
+</dl>
+
 
         
 
@@ -826,7 +1240,7 @@ usually of some subclass of range).</p></div>
             
 <hr>
 <dt>
-    <h4 class="name" id=".fromBounds"><span class="type-signature">&lt;static> </span>fromBounds(bounds)</h4>
+    <h4 class="name" id=".fromBounds"><span class="type-signature">&lt;static> </span>fromBounds(obj)</h4>
     
     
 </dt>
@@ -834,9 +1248,7 @@ usually of some subclass of range).</p></div>
 
     
     <div class="description">
-        <p>Create a range from a bounds object </p>
-<p>A bounds object is an object in the form { &quot;<operator>&quot; : value  (e.g. { &quot;&gt;&quot; : 7 }). Returns
-null if obj is not a valid bounds object.</p>
+        <p>Create a range from a bounds object</p>
     </div>
     
 
@@ -871,7 +1283,7 @@ null if obj is not a valid bounds object.</p>
 
         <tr>
             
-                <td class="name"><code>bounds</code></td>
+                <td class="name"><code>obj</code></td>
             
 
             <td class="type">
@@ -888,7 +1300,313 @@ null if obj is not a valid bounds object.</p>
 
             
 
-            <td class="description last"><p>object</p></td>
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>a range if obj is a bounds object, null otherwise</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Range.html">Range</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".fromValue"><span class="type-signature">&lt;static> </span>fromValue(obj [, default_constructor] [, order])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Create a range from a single value</p>
+<p>The parameter 'obj' may be a bounds object, a simple value, a parameter a Query, or a Range. The result
+varies according to the type of obj, and whether an explicit order function is provided.</p>
+<table>
+<thead>
+<tr>
+<th>Type of obj</th>
+<th>order</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>null</td>
+<td></td>
+<td>null</td>
+</tr>
+<tr>
+<td>undefined</td>
+<td></td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>Range</td>
+<td></td>
+<td>obj</td>
+</tr>
+<tr>
+<td>Query</td>
+<td></td>
+<td>Range.subquery(obj)</td>
+</tr>
+<tr>
+<td>Range~Bounds</td>
+<td></td>
+<td>Range.fromBounds(obj)</td>
+</tr>
+<tr>
+<td>Param</td>
+<td></td>
+<td>default_constructor(obj, order)</td>
+</tr>
+<tr>
+<td>Param~ParamObject</td>
+<td></td>
+<td>default_constructor(Param.from(obj), order)</td>
+</tr>
+<tr>
+<td>Object</td>
+<td>provided</td>
+<td>default_constructor(obj, order)</td>
+</tr>
+<tr>
+<td>Object</td>
+<td>default</td>
+<td>Range.subquery(Query.from(obj))</td>
+</tr>
+</tbody>
+</table>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>obj</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Range.html#~AnyValue">Range~AnyValue</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>value</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>default_constructor</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    Range.equals
+                
+                </td>
+            
+
+            <td class="description last"><p>constructor to use if Param or Comparable is provided</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>order</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Range.html#~OrderingFunction">Range~OrderingFunction</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    DEFAULT_ORDER
+                
+                </td>
+            
+
+            <td class="description last"><p>compare two values and return true if the first is less than the second.</p></td>
         </tr>
 
     
@@ -957,6 +1675,19 @@ null if obj is not a valid bounds object.</p>
 
 
 
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Range.html">Range</a></span>
+
+
+
+    </dd>
+</dl>
+
 
         
 
@@ -1018,6 +1749,12 @@ null if obj is not a valid bounds object.</p>
             
 
             <td class="type">
+            
+                
+<span class="param-type"><a href="Range.html#~SimpleValue">Range~SimpleValue</a></span>
+
+
+
             
             </td>
 
@@ -1220,6 +1957,12 @@ null if obj is not a valid bounds object.</p>
             
 
             <td class="type">
+            
+                
+<span class="param-type"><a href="Range.html#~SimpleValue">Range~SimpleValue</a></span>
+
+
+
             
             </td>
 
@@ -1556,6 +2299,12 @@ null if obj is not a valid bounds object.</p>
 
             <td class="type">
             
+                
+<span class="param-type"><a href="Range.html#~SimpleValue">Range~SimpleValue</a></span>
+
+
+
+            
             </td>
 
             
@@ -1757,6 +2506,12 @@ null if obj is not a valid bounds object.</p>
             
 
             <td class="type">
+            
+                
+<span class="param-type"><a href="Range.html#~SimpleValue">Range~SimpleValue</a></span>
+
+
+
             
             </td>
 
@@ -2070,6 +2825,80 @@ high-level object is matched or not. A trivial case would be a constraint that r
         <dl>
                 
 <hr>
+<dt class="name" id="~AnyValue">
+    <h4 id="~AnyValue">AnyValue</h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Anything that can be converted into a range.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Range~BetweenValue</span>
+|
+
+<span class="param-type"><a href="Query.html">Query</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+            
+                
+<hr>
 <dt class="name" id="~Bounds">
     <h4 id="~Bounds">Bounds</h4>
 
@@ -2089,7 +2918,7 @@ of the property should be comparable.</p>
         <ul>
             <li>
                 
-<span class="param-type">Object.&lt;string, <a href="global.html#Comparable">Comparable</a>></span>
+<span class="param-type">Object.&lt;string, <a href="Range.html#~SimpleValue">Range~SimpleValue</a>></span>
 
 
 
@@ -2304,6 +3133,83 @@ of the property should be comparable.</p>
     
 </dd>
 
+            
+                
+<hr>
+<dt class="name" id="~SimpleValue">
+    <h4 id="~SimpleValue">SimpleValue</h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>A value that can be used as a parameter when creating a simple range (e.g. with Range.equals, Range.lessThan, etc)</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Object</span>
+|
+
+<span class="param-type"><a href="Param.html">Param</a></span>
+|
+
+<span class="param-type"><a href="Param.html#~ParamObject">Param~ParamObject</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
             </dl>
     
 
@@ -2356,7 +3262,7 @@ of the property should be comparable.</p>
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2017-09-27T13:06:15-04:00
+		on 2017-10-07T15:29:58-04:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
