@@ -97,7 +97,7 @@ same signature and should work as a drop-in replacement.</p></div>
         
 <hr>
 <dt>
-    <h4 class="name" id="Store"><span class="type-signature"></span>new Store(type, key, comparator)</h4>
+    <h4 class="name" id="Store"><span class="type-signature"></span>new Store(type [, key] [, comparator])</h4>
     
     
 </dt>
@@ -131,6 +131,8 @@ be a string or a number).</p>
         <th>Type</th>
 
         
+        <th>Argument</th>
+        
 
         
 
@@ -157,6 +159,14 @@ be a string or a number).</p>
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -181,6 +191,16 @@ be a string or a number).</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -204,6 +224,16 @@ be a string or a number).</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -485,6 +515,30 @@ be a string or a number).</p>
     
 
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>a promise that resolves to the number of items updated.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;number></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
 
     
 </dd>
@@ -540,6 +594,15 @@ be a string or a number).</p>
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+
             
             </td>
 
@@ -616,6 +679,19 @@ be a string or a number).</p>
 
 
 
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
 
         
 
@@ -626,7 +702,7 @@ be a string or a number).</p>
             
 <hr>
 <dt>
-    <h4 class="name" id="findAll"><span class="type-signature"></span>findAll(index)</h4>
+    <h4 class="name" id="findAll"><span class="type-signature"></span>findAll(query [, parameters])</h4>
     
     
 </dt>
@@ -634,7 +710,7 @@ be a string or a number).</p>
 
     
     <div class="description">
-        <p>Find objects by index</p>
+        <p>Find objects by query</p>
     </div>
     
 
@@ -657,6 +733,8 @@ be a string or a number).</p>
         <th>Type</th>
 
         
+        <th>Argument</th>
+        
 
         
 
@@ -669,13 +747,13 @@ be a string or a number).</p>
 
         <tr>
             
-                <td class="name"><code>index</code></td>
+                <td class="name"><code>query</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type">Query</span>
 
 
 
@@ -683,10 +761,52 @@ be a string or a number).</p>
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>A function that takes a value and a stored object and returns true or false</p></td>
+            <td class="description last"><p>A query object</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>parameters</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Supplies parameters to the query</p></td>
         </tr>
 
     
@@ -750,10 +870,23 @@ be a string or a number).</p>
     
             
 <div class="param-desc">
-    <p>A promise of an array containing all elements for which the function returns true for the given value</p>
+    <p>An async stream containing all elements for which the query predicate returns true for the given parameters</p>
 </div>
 
 
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">BaseAsyncStream</span>
+
+
+
+    </dd>
+</dl>
 
 
         
@@ -812,6 +945,12 @@ be a string or a number).</p>
             
 
             <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
             
             </td>
 
@@ -888,6 +1027,19 @@ be a string or a number).</p>
 
 
 
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;boolean></span>
+
+
+
+    </dd>
+</dl>
+
 
         
 
@@ -898,7 +1050,7 @@ be a string or a number).</p>
             
 <hr>
 <dt>
-    <h4 class="name" id="removeAll"><span class="type-signature"></span>removeAll(index, a)</h4>
+    <h4 class="name" id="removeAll"><span class="type-signature"></span>removeAll(query [, parameters], a)</h4>
     
     
 </dt>
@@ -929,6 +1081,8 @@ be a string or a number).</p>
         <th>Type</th>
 
         
+        <th>Argument</th>
+        
 
         
 
@@ -941,13 +1095,13 @@ be a string or a number).</p>
 
         <tr>
             
-                <td class="name"><code>index</code></td>
+                <td class="name"><code>query</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type">Query</span>
 
 
 
@@ -955,10 +1109,52 @@ be a string or a number).</p>
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>a function that takes a value and an object from the store and returns true or false</p></td>
+            <td class="description last"><p>A query object</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>parameters</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Supplies parameters to the query</p></td>
         </tr>
 
     
@@ -970,13 +1166,27 @@ be a string or a number).</p>
 
             <td class="type">
             
+                
+<span class="param-type">Promise.&lt;boolean></span>
+
+
+
+            
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>value that determines which objects are removed.</p></td>
+            <td class="description last"><p>promise that resolves to true if at least one item has been deleted.</p></td>
         </tr>
 
     
@@ -1092,6 +1302,12 @@ be a string or a number).</p>
 
             <td class="type">
             
+                
+<span class="param-type">Object</span>
+
+
+
+            
             </td>
 
             
@@ -1167,6 +1383,19 @@ be a string or a number).</p>
 
 
 
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
 
         
 
@@ -1225,9 +1454,9 @@ be a string or a number).</p>
 	</span>
 
 <span class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2017-08-28T21:19:06-04:00
+		on 2017-10-10T17:13:56-04:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
