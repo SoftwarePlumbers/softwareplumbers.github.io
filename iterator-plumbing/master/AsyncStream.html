@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>iterator-plumbing Class: BaseStream</title>
+	<title>iterator-plumbing Class: AsyncStream</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,17 +72,17 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: BaseStream</h1>
+	<h1 class="page-title">Class: AsyncStream</h1>
 <section>
 
 <header>
     
         <h2>
-        BaseStream
+        AsyncStream
         </h2>
         
-            <div class="class-description"><p>Base stream clase that provides core stream operations.</p>
-<p>A stream is an Iterator (it implements next()) with bells on. Various utility methods are provided
+            <div class="class-description"><p>AsyncStream class that simply wraps an asynchronous iterator.</p>
+<p>A stream is an iterator (it implements next()) with bells on. Various utility methods are provided
 to filter, map, concatenate, and generally work with streams. For convenience, these methods are
 based on the methods already available in a javascript array, so the stream API can often be used
 as a drop-in replacement. In many cases the lazy nature of the stream API (and avoidance of array copies)
@@ -98,19 +98,74 @@ will make the updated code more efficient than using simple arrays.</p></div>
         
 <hr>
 <dt>
-    <h4 class="name" id="BaseStream"><span class="type-signature"></span>new BaseStream()</h4>
+    <h4 class="name" id="AsyncStream"><span class="type-signature"></span>new AsyncStream(iterator)</h4>
     
     
 </dt>
 <dd>
 
     
-
+    <div class="description">
+        <p>Build a stream from an iterator.</p>
+<p>Essentially just wraps the supplied iterator, providing all the additional stream functions.</p>
+    </div>
     
 
     
 
     
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>iterator</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#AsyncIterator">AsyncIterator</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>to wrap.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -172,6 +227,15 @@ will make the updated code more efficient than using simple arrays.</p></div>
     </div>
 
     
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="BaseAsyncStream.html">BaseAsyncStream</a></li>
+    </ul>
+
 
     
 
@@ -181,6 +245,72 @@ will make the updated code more efficient than using simple arrays.</p></div>
 
     
 
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+<hr>
+<dt class="name" id=".EMPTY">
+    <h4 id=".EMPTY"><span class="type-signature">&lt;static> </span>EMPTY<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>an empty stream</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        </dl>
     
 
     
@@ -190,7 +320,7 @@ will make the updated code more efficient than using simple arrays.</p></div>
             
 <hr>
 <dt>
-    <h4 class="name" id="concat"><span class="type-signature"></span>concat(iterator)</h4>
+    <h4 class="name" id=".from"><span class="type-signature">&lt;static> </span>from(iterator)</h4>
     
     
 </dt>
@@ -198,7 +328,9 @@ will make the updated code more efficient than using simple arrays.</p></div>
 
     
     <div class="description">
-        <p>Concatenate this stream with another stream (or an iterator)</p>
+        <p>Build an asynchronous stream from an iterable</p>
+<p>If source is iterable, return an async stream over items in source. Otherwise, return a stream with a single
+element, source.</p>
     </div>
     
 
@@ -239,7 +371,10 @@ will make the updated code more efficient than using simple arrays.</p></div>
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#Iterator">Iterator</a>.&lt;T></span>
+<span class="param-type"><a href="global.html#Iterable">Iterable</a></span>
+|
+
+<span class="param-type">Object</span>
 
 
 
@@ -250,7 +385,7 @@ will make the updated code more efficient than using simple arrays.</p></div>
 
             
 
-            <td class="description last"><p>Stream or iterator to concatenate</p></td>
+            <td class="description last"><p>iterable to build a stream from.</p></td>
         </tr>
 
     
@@ -314,7 +449,7 @@ will make the updated code more efficient than using simple arrays.</p></div>
     
             
 <div class="param-desc">
-    <p>a new stream that iterates over all items in this stream, then all items in the supplied iterator</p>
+    <p>a new asynchronous stream</p>
 </div>
 
 
@@ -325,7 +460,7 @@ will make the updated code more efficient than using simple arrays.</p></div>
     </dt>
     <dd>
         
-<span class="param-type"><a href="BaseStream.html">BaseStream</a>.&lt;T></span>
+<span class="param-type"><a href="AsyncStream.html">AsyncStream</a></span>
 
 
 
@@ -342,7 +477,7 @@ will make the updated code more efficient than using simple arrays.</p></div>
             
 <hr>
 <dt>
-    <h4 class="name" id="entries"><span class="type-signature"></span>entries()</h4>
+    <h4 class="name" id=".of"><span class="type-signature">&lt;static> </span>of(elements)</h4>
     
     
 </dt>
@@ -350,8 +485,7 @@ will make the updated code more efficient than using simple arrays.</p></div>
 
     
     <div class="description">
-        <p>Create a stream of entries.</p>
-<p>an 'entry' is a key/value pair - the key in this case is the position of the item in the stream.</p>
+        <p>Build an async stream from the given arguments.</p>
     </div>
     
 
@@ -360,6 +494,68 @@ will make the updated code more efficient than using simple arrays.</p></div>
     
 
     
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>elements</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>to convert into a stream.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -416,6 +612,10 @@ will make the updated code more efficient than using simple arrays.</p></div>
     <h5>Returns:</h5>
     
             
+<div class="param-desc">
+    <p>a new asynchronous stream</p>
+</div>
+
 
 
 <dl>
@@ -424,7 +624,276 @@ will make the updated code more efficient than using simple arrays.</p></div>
     </dt>
     <dd>
         
-<span class="param-type"><a href="BaseStream.html">BaseStream</a>.&lt;<a href="global.html#Entry">Entry</a>></span>
+<span class="param-type"><a href="AsyncStream.html">AsyncStream</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="concat"><span class="type-signature"></span>concat(iterator)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Concatenate this stream with another stream (or an iterator)</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>iterator</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#AsyncIterator">AsyncIterator</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>items to concatenate</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseAsyncStream.html#concat">BaseAsyncStream#concat</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>a new stream that iterates over all items in this stream, then all items in the supplied iterator</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="BaseAsyncStream.html">BaseAsyncStream</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="entries"><span class="type-signature"></span>entries()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Create a stream of entries.</p>
+<p>an 'entry' is a key/value pair - the key in this case is the position of the item in the stream.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseAsyncStream.html#entries">BaseAsyncStream#entries</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="BaseAsyncStream.html">BaseAsyncStream</a>.&lt;<a href="global.html#Entry">Entry</a>></span>
 
 
 
@@ -563,6 +1032,15 @@ will make the updated code more efficient than using simple arrays.</p></div>
 	
 
 	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseAsyncStream.html#every">BaseAsyncStream#every</a>
+			</li>
+		</ul>
+	</dd>
+	
 
     
 
@@ -609,7 +1087,7 @@ will make the updated code more efficient than using simple arrays.</p></div>
     
             
 <div class="param-desc">
-    <p>true if predicate evaluates to true for every element in the stream</p>
+    <p>resolves to true if predicate evaluates to true for every element in the stream</p>
 </div>
 
 
@@ -620,7 +1098,7 @@ will make the updated code more efficient than using simple arrays.</p></div>
     </dt>
     <dd>
         
-<span class="param-type">boolean</span>
+<span class="param-type">Promise.&lt;boolean></span>
 
 
 
@@ -759,6 +1237,15 @@ will make the updated code more efficient than using simple arrays.</p></div>
 	
 
 	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseAsyncStream.html#filter">BaseAsyncStream#filter</a>
+			</li>
+		</ul>
+	</dd>
+	
 
     
 
@@ -816,7 +1303,7 @@ will make the updated code more efficient than using simple arrays.</p></div>
     </dt>
     <dd>
         
-<span class="param-type"><a href="BaseStream.html">BaseStream</a></span>
+<span class="param-type"><a href="BaseAsyncStream.html">BaseAsyncStream</a></span>
 
 
 
@@ -955,6 +1442,15 @@ will make the updated code more efficient than using simple arrays.</p></div>
 	
 
 	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseAsyncStream.html#find">BaseAsyncStream#find</a>
+			</li>
+		</ul>
+	</dd>
+	
 
     
 
@@ -1001,7 +1497,7 @@ will make the updated code more efficient than using simple arrays.</p></div>
     
             
 <div class="param-desc">
-    <p>the first item in the stream for which predicate evaluates to true</p>
+    <p>resolves to the first item in the stream for which predicate evaluates to true</p>
 </div>
 
 
@@ -1012,7 +1508,7 @@ will make the updated code more efficient than using simple arrays.</p></div>
     </dt>
     <dd>
         
-<span class="param-type">Object</span>
+<span class="param-type">Promise</span>
 
 
 
@@ -1151,6 +1647,15 @@ will make the updated code more efficient than using simple arrays.</p></div>
 	
 
 	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseAsyncStream.html#findIndex">BaseAsyncStream#findIndex</a>
+			</li>
+		</ul>
+	</dd>
+	
 
     
 
@@ -1197,7 +1702,7 @@ will make the updated code more efficient than using simple arrays.</p></div>
     
             
 <div class="param-desc">
-    <p>the index of first item in the stream for which predicate evaluates to true, or -1</p>
+    <p>resolves to the index of first item in the stream for which predicate evaluates to true, or -1</p>
 </div>
 
 
@@ -1208,7 +1713,7 @@ will make the updated code more efficient than using simple arrays.</p></div>
     </dt>
     <dd>
         
-<span class="param-type">number</span>
+<span class="param-type">Promise.&lt;number></span>
 
 
 
@@ -1234,7 +1739,7 @@ will make the updated code more efficient than using simple arrays.</p></div>
     
     <div class="description">
         <p>Flatten a nested structure by iterating over the stream returned by stream_accessor for each item in this stream.</p>
-<p>If a stream accessor is not provided, an attempt will be made to use Stream.from(e) to retrieve a stream from
+<p>If a stream accessor is not provided, an attempt will be made to use AsyncStream.from(e) to retrieve a stream from
 each element e of this stream. This works fine if e is an <a href="global.html#Iterable">Iterable</a>.</p>
     </div>
     
@@ -1317,6 +1822,15 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
 	
 
 	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseAsyncStream.html#flatten">BaseAsyncStream#flatten</a>
+			</li>
+		</ul>
+	</dd>
+	
 
     
 
@@ -1374,7 +1888,7 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
     </dt>
     <dd>
         
-<span class="param-type"><a href="BaseStream.html">BaseStream</a></span>
+<span class="param-type"><a href="BaseAsyncStream.html">BaseAsyncStream</a></span>
 
 
 
@@ -1492,6 +2006,15 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
 
 	
 
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseAsyncStream.html#forEach">BaseAsyncStream#forEach</a>
+			</li>
+		</ul>
+	</dd>
 	
 
     
@@ -1653,7 +2176,7 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
                 </td>
             
 
-            <td class="description last"><p>index to start looking (defaults to 0)</p></td>
+            <td class="description last"><p>index to start looking</p></td>
         </tr>
 
     
@@ -1670,6 +2193,15 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
 
 	
 
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseAsyncStream.html#includes">BaseAsyncStream#includes</a>
+			</li>
+		</ul>
+	</dd>
 	
 
     
@@ -1728,7 +2260,7 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
     </dt>
     <dd>
         
-<span class="param-type">boolean</span>
+<span class="param-type">Promise.&lt;boolean></span>
 
 
 
@@ -1879,6 +2411,15 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
 	
 
 	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseAsyncStream.html#indexOf">BaseAsyncStream#indexOf</a>
+			</li>
+		</ul>
+	</dd>
+	
 
     
 
@@ -1925,7 +2466,7 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
     
             
 <div class="param-desc">
-    <p>the index of first item in the stream matching item, or -1</p>
+    <p>resolves to the index of first item in the stream matching item, or -1</p>
 </div>
 
 
@@ -1936,7 +2477,7 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
     </dt>
     <dd>
         
-<span class="param-type">number</span>
+<span class="param-type">Promise.&lt;number></span>
 
 
 
@@ -2031,6 +2572,15 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
 	
 
 	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseAsyncStream.html#join">BaseAsyncStream#join</a>
+			</li>
+		</ul>
+	</dd>
+	
 
     
 
@@ -2077,7 +2627,7 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
     
             
 <div class="param-desc">
-    <p>all elements of stream joined into a string.</p>
+    <p>resolves to all elements of stream joined into a string.</p>
 </div>
 
 
@@ -2088,7 +2638,7 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
     </dt>
     <dd>
         
-<span class="param-type">String</span>
+<span class="param-type">Promise.&lt;string></span>
 
 
 
@@ -2227,6 +2777,15 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
 	
 
 	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseAsyncStream.html#map">BaseAsyncStream#map</a>
+			</li>
+		</ul>
+	</dd>
+	
 
     
 
@@ -2284,7 +2843,109 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
     </dt>
     <dd>
         
-<span class="param-type"><a href="BaseStream.html">BaseStream</a></span>
+<span class="param-type"><a href="BaseAsyncStream.html">BaseAsyncStream</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="next"><span class="type-signature"></span>next()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Get the next item in the stream.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>a promise of the next item (which is just the result of calling next on the iterator supplied in the constructor)</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;<a href="global.html#IteratorValue">IteratorValue</a>></span>
 
 
 
@@ -2380,6 +3041,15 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
 	
 
 	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseAsyncStream.html#push">BaseAsyncStream#push</a>
+			</li>
+		</ul>
+	</dd>
+	
 
     
 
@@ -2437,7 +3107,7 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
     </dt>
     <dd>
         
-<span class="param-type"><a href="BaseStream.html">BaseStream</a></span>
+<span class="param-type"><a href="BaseAsyncStream.html">BaseAsyncStream</a></span>
 
 
 
@@ -2603,6 +3273,15 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
 	
 
 	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseAsyncStream.html#reduce">BaseAsyncStream#reduce</a>
+			</li>
+		</ul>
+	</dd>
+	
 
     
 
@@ -2649,10 +3328,23 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
     
             
 <div class="param-desc">
-    <p>the final value of the accumulator</p>
+    <p>resolves to the final value of the accumulator</p>
 </div>
 
 
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
 
 
         
@@ -2692,6 +3384,15 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
 	
 
 	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseAsyncStream.html#shift">BaseAsyncStream#shift</a>
+			</li>
+		</ul>
+	</dd>
+	
 
     
 
@@ -2738,7 +3439,7 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
     
             
 <div class="param-desc">
-    <p>the first item in the stream, or undefined if none exists.</p>
+    <p>resolves to the first item in the stream, or undefined if none exists.</p>
 </div>
 
 
@@ -2749,7 +3450,7 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
     </dt>
     <dd>
         
-<span class="param-type">Object</span>
+<span class="param-type">Promise</span>
 
 
 
@@ -2896,6 +3597,15 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
 	
 
 	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseAsyncStream.html#slice">BaseAsyncStream#slice</a>
+			</li>
+		</ul>
+	</dd>
+	
 
     
 
@@ -2953,7 +3663,7 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
     </dt>
     <dd>
         
-<span class="param-type"><a href="BaseStream.html">BaseStream</a></span>
+<span class="param-type"><a href="BaseAsyncStream.html">BaseAsyncStream</a></span>
 
 
 
@@ -3048,6 +3758,15 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
 	
 
 	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseAsyncStream.html#some">BaseAsyncStream#some</a>
+			</li>
+		</ul>
+	</dd>
+	
 
     
 
@@ -3094,7 +3813,7 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
     
             
 <div class="param-desc">
-    <p>true if an element is found for which predicate evaluates to true.</p>
+    <p>resolves to true if an element is found for which predicate evaluates to true.</p>
 </div>
 
 
@@ -3105,7 +3824,7 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
     </dt>
     <dd>
         
-<span class="param-type">boolean</span>
+<span class="param-type">Promise.&lt;boolean></span>
 
 
 
@@ -3150,6 +3869,15 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
 	
 
 	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseAsyncStream.html#toArray">BaseAsyncStream#toArray</a>
+			</li>
+		</ul>
+	</dd>
+	
 
     
 
@@ -3196,7 +3924,7 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
     
             
 <div class="param-desc">
-    <p>an array containing all elements in the stream.</p>
+    <p>A promise of an array containing all elements in the stream.</p>
 </div>
 
 
@@ -3207,7 +3935,7 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
     </dt>
     <dd>
         
-<span class="param-type">Array</span>
+<span class="param-type">Promise.&lt;Array></span>
 
 
 
@@ -3224,7 +3952,7 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
             
 <hr>
 <dt>
-    <h4 class="name" id="toMap"><span class="type-signature"></span>toMap( [key] [, value])</h4>
+    <h4 class="name" id="toMap"><span class="type-signature"></span>toMap(key, value)</h4>
     
     
 </dt>
@@ -3255,8 +3983,6 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
         <th>Type</th>
 
         
-        <th>Argument</th>
-        
 
         
 
@@ -3283,16 +4009,6 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
 
             
 
@@ -3317,16 +4033,6 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
 
             
 
@@ -3347,6 +4053,15 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
 
 	
 
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseAsyncStream.html#toMap">BaseAsyncStream#toMap</a>
+			</li>
+		</ul>
+	</dd>
 	
 
     
@@ -3394,7 +4109,7 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
     
             
 <div class="param-desc">
-    <p>a new Map with specified keys and values from stream</p>
+    <p>resolves to a new Map with specified keys and values from stream</p>
 </div>
 
 
@@ -3405,7 +4120,7 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
     </dt>
     <dd>
         
-<span class="param-type">Map</span>
+<span class="param-type">Promise.&lt;Map></span>
 
 
 
@@ -3546,6 +4261,15 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
 	
 
 	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseAsyncStream.html#toObject">BaseAsyncStream#toObject</a>
+			</li>
+		</ul>
+	</dd>
+	
 
     
 
@@ -3592,7 +4316,7 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
     
             
 <div class="param-desc">
-    <p>a new object with specified property names and values from stream</p>
+    <p>resolves to a new object with specified property names and values from stream</p>
 </div>
 
 
@@ -3603,7 +4327,7 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
     </dt>
     <dd>
         
-<span class="param-type">Object</span>
+<span class="param-type">Promise</span>
 
 
 
@@ -3628,8 +4352,8 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
 
     
     <div class="description">
-        <p>Convert stream of key/value pairs to an array of values.</p>
-<p>Equivalent to map(([k,v])=&gt;v).toArray().</p>
+        <p>Convert stream of key/value pairs to an array of values</p>
+<p>Equivalent to map(([k,v])=&gt;v).toArray()</p>
     </div>
     
 
@@ -3648,6 +4372,15 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
 
 	
 
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseAsyncStream.html#toValues">BaseAsyncStream#toValues</a>
+			</li>
+		</ul>
+	</dd>
 	
 
     
@@ -3695,7 +4428,7 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
     
             
 <div class="param-desc">
-    <p>an array of simple values.</p>
+    <p>resolves to an array of simple values.</p>
 </div>
 
 
@@ -3706,7 +4439,7 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
     </dt>
     <dd>
         
-<span class="param-type">Array</span>
+<span class="param-type">Promise.&lt;Array></span>
 
 
 

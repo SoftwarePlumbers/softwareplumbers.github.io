@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>iterator-plumbing Index</title>
+	<title>iterator-plumbing Class: FilterAsyncStream</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -33,7 +33,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="AsyncStream.html">AsyncStream</a></li><li><a href="BaseAsyncStream.html">BaseAsyncStream</a></li><li><a href="BaseStream.html">BaseStream</a></li><li><a href="Stream.html">Stream</a></li>
+					<li><a href="AsyncStream.html">AsyncStream</a></li><li><a href="BaseAsyncStream.html">BaseAsyncStream</a></li><li><a href="BaseStream.html">BaseStream</a></li><li><a href="ConcatenatedAsyncStream.html">ConcatenatedAsyncStream</a></li><li><a href="FilterAsyncStream.html">FilterAsyncStream</a></li><li><a href="FlattenedAsyncStream.html">FlattenedAsyncStream</a></li><li><a href="MappingAsyncStream.html">MappingAsyncStream</a></li><li><a href="Stream.html">Stream</a></li>
 				</ul>
 			</li>
 			
@@ -72,48 +72,306 @@
 		<div id="main">
 			
 
+	<h1 class="page-title">Class: FilterAsyncStream</h1>
+<section>
+
+<header>
+    
+        <h2>
+        FilterAsyncStream
+        </h2>
+        
+            <div class="class-description"><p>Stream that filters items based on a predicate function</p>
+<p>Stream will only return items for which predicate function evaluates to true.</p></div>
+        
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+<hr>
+<dt>
+    <h4 class="name" id="FilterAsyncStream"><span class="type-signature"></span>new FilterAsyncStream(iterator, predicate, context)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Construct a new filtered stream.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>iterator</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>iterator or stream to provide underlying data</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>predicate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>function to filter items.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>(optional) data to pass through to test function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
 	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
 	
 
 
 
+	
+
+	
+
+	
+
+	
+</dl>
 
 
+    
 
+    
 
+    
 
+    
+
+    
+
+    
+
+    
+</dd>
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id="next"><span class="type-signature"></span>next()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Get the next item in the stream.</p>
+<p>As per the iterable protocol, next returns the tuple { done, value } where done is true once there are no more
+items in the stream.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
 
 
 
 	
+
 	
 
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>the next item (which is just the result of calling next on the iterator supplied in the constructor)</p>
+</div>
 
 
 
 
-    <section class="readme-section">
-        <article><h1><img src="http://docs.softwareplumbers.com/common/img/SquareIdent-160.png" alt="Software Plumbers"> Iterator Plumbing</h1><p>Synchronous and Asynchronous Iterator utilities, providing many standard array functions without the neeed to create an array.</p>
-<h2>Example</h2><pre class="prettyprint source lang-javascript"><code>let stream = Stream.of([1,2,3,4,5,6,7,8,9]);
+        
 
-let result = stream.map(a=>a*7).filter(a=>a%2===0).slice(2,4).join(', ')</code></pre><p>and result should equal '42, 56'. No itermediate arrays will be created; pipeline is typically more efficient than using the equivalent array methods.</p>
-<h2>Asynchronous Streams</h2><p>For i/o operations we may also want to work with promises. Accordingly, we support a modified version of the iterator 
-protocol where next() returns a Promise that resolves to <code>{ done, value }</code> as opposed to directly returning it. Pipelines
-such as the above example will work unchanged on an asynchronous stream with th exception that terminals (such as join)
-return a Promise rather than a simple value.</p>
-<p>For the latest API documentation see <a href="http://docs.softwareplumbers.com/iterator-plumbing/master">The Software Plumbers Site</a></p>
-<h2>Project Status</h2><p>Beta. It seems functional, and the unit tests pass.   </p>
-<h2>Why another set of iterator utilities?</h2><p>There's lots of good ones out there. However, features of this one that may appeal:</p>
-<ol>
-<li>No transpilers, written in straight javascript</li>
-<li>No dependencies</li>
-<li>API is so similar to Array that in many cases a stream pipeline can simply replace existing array-based code</li>
-<li>Clean class-based implementation</li>
-</ol></article>
-    </section>
+    
+</dd>
 
+        </dl>
+    
 
+    
 
+    
+</article>
+
+</section>
 
 
 
@@ -159,7 +417,7 @@ return a Promise rather than a simple value.</p>
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
-		on 2017-10-10T14:37:50-04:00
+		on 2017-10-10T13:45:01-04:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

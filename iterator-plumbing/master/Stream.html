@@ -33,7 +33,14 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="BaseStream.html">BaseStream</a></li><li><a href="ConcatenatedStream.html">ConcatenatedStream</a></li><li><a href="FilterStream.html">FilterStream</a></li><li><a href="MappingStream.html">MappingStream</a></li><li><a href="Stream.html">Stream</a></li>
+					<li><a href="AsyncStream.html">AsyncStream</a></li><li><a href="BaseAsyncStream.html">BaseAsyncStream</a></li><li><a href="BaseStream.html">BaseStream</a></li><li><a href="Stream.html">Stream</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html">Global</a></li>
 				</ul>
 			</li>
 			
@@ -74,7 +81,7 @@
         Stream
         </h2>
         
-            <div class="class-description"><p>Stream clase that simply wraps another iterator.</p>
+            <div class="class-description"><p>Stream class that simply wraps another iterator.</p>
 <p>A stream is an iterator (it implements next()) with bells on. Various utility methods are provided
 to filter, map, concatenate, and generally work with streams. For convenience, these methods are
 based on the methods already available in a javascript array, so the stream API can often be used
@@ -214,6 +221,15 @@ will make the updated code more efficient than using simple arrays.</p></div>
     </div>
 
     
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="BaseStream.html">BaseStream</a></li>
+    </ul>
+
 
     
 
@@ -223,6 +239,72 @@ will make the updated code more efficient than using simple arrays.</p></div>
 
     
 
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+<hr>
+<dt class="name" id=".EMPTY">
+    <h4 id=".EMPTY"><span class="type-signature">&lt;static> </span>EMPTY<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>an empty stream</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        </dl>
     
 
     
@@ -232,7 +314,7 @@ will make the updated code more efficient than using simple arrays.</p></div>
             
 <hr>
 <dt>
-    <h4 class="name" id=".of"><span class="type-signature">&lt;static> </span>of(source)</h4>
+    <h4 class="name" id=".from"><span class="type-signature">&lt;static> </span>from(source)</h4>
     
     
 </dt>
@@ -241,6 +323,8 @@ will make the updated code more efficient than using simple arrays.</p></div>
     
     <div class="description">
         <p>Build a stream from an iterable</p>
+<p>If source is Iterable, return a stream over items in source. Otherwise, return a stream with a single
+element, source.</p>
     </div>
     
 
@@ -280,13 +364,22 @@ will make the updated code more efficient than using simple arrays.</p></div>
 
             <td class="type">
             
+                
+<span class="param-type"><a href="global.html#Iterable">Iterable</a></span>
+|
+
+<span class="param-type">Object</span>
+
+
+
+            
             </td>
 
             
 
             
 
-            <td class="description last"><p>iterable object to build a stream from.</p></td>
+            <td class="description last"><p>object to build a stream from.</p></td>
         </tr>
 
     
@@ -346,6 +439,2565 @@ will make the updated code more efficient than using simple arrays.</p></div>
     
 
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>a new stream</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Stream.html">Stream</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".fromProperties"><span class="type-signature">&lt;static> </span>fromProperties(source)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Build a stream from an object</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>source</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>object to build a stream from.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>A stream of key/value pairs in the format [k,v] where k is the name of the attribute and v the value.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Stream.html">Stream</a>.&lt;<a href="global.html#Entry">Entry</a>></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".of"><span class="type-signature">&lt;static> </span>of(elements)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Build a stream from the given arguments.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>elements</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>to convert into a stream.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>a stream returning each argument in turn.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Stream.html">Stream</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="concat"><span class="type-signature"></span>concat(iterator)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Concatenate this stream with another stream (or an iterator)</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>iterator</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Iterator">Iterator</a>.&lt;T></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Stream or iterator to concatenate</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseStream.html#concat">BaseStream#concat</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>a new stream that iterates over all items in this stream, then all items in the supplied iterator</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="BaseStream.html">BaseStream</a>.&lt;T></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="entries"><span class="type-signature"></span>entries()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Create a stream of entries.</p>
+<p>an 'entry' is a key/value pair - the key in this case is the position of the item in the stream.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseStream.html#entries">BaseStream#entries</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="BaseStream.html">BaseStream</a>.&lt;<a href="global.html#Entry">Entry</a>></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="every"><span class="type-signature"></span>every(predicate [, context])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Check if predicate evaluates to true for all elements in stream</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>predicate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Predicate">Predicate</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>to check</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>passed through to predicate (could be the collection we are iterating over)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseStream.html#every">BaseStream#every</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>true if predicate evaluates to true for every element in the stream</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="filter"><span class="type-signature"></span>filter(predicate [, context])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Filter a stream</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>predicate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Predicate">Predicate</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>predicate to select items from stream</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>(optional) data to pass through to test function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseStream.html#filter">BaseStream#filter</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>a stream containing only those items from this stream for which predicate evaluates to true</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="BaseStream.html">BaseStream</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="find"><span class="type-signature"></span>find(predicate [, context])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Find the first item in a stream for which the predicate evalues to true.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>predicate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Predicate">Predicate</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>function to test items</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>data to pass through to test function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseStream.html#find">BaseStream#find</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>the first item in the stream for which predicate evaluates to true</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="findIndex"><span class="type-signature"></span>findIndex(predicate [, context])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Find the index of the first item in a stream for which the predicate evalues to true.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>predicate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Predicate">Predicate</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>function to test items</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>data to pass through to test function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseStream.html#findIndex">BaseStream#findIndex</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>the index of first item in the stream for which predicate evaluates to true, or -1</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="flatten"><span class="type-signature"></span>flatten( [stream_accessor])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Flatten a nested structure by iterating over the stream returned by stream_accessor for each item in this stream.</p>
+<p>If a stream accessor is not provided, an attempt will be made to use Stream.from(e) to retrieve a stream from
+each element e of this stream. This works fine if e is an <a href="global.html#Iterable">Iterable</a>.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>stream_accessor</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>function that returns a stream given an object in this stream</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseStream.html#flatten">BaseStream#flatten</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>stream that iterates over every object in every stream returned by stream_accessor.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="BaseStream.html">BaseStream</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="forEach"><span class="type-signature"></span>forEach(callback, context)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Execute callback for every element in stream</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#ForEachCallback">ForEachCallback</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>function to execute</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>context passed through to callback (could be the collection we are iterating over)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseStream.html#forEach">BaseStream#forEach</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="includes"><span class="type-signature"></span>includes(item [, fromIndex])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Test to see if stream includes a given value</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>item</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>value to look for</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fromIndex</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last"><p>index to start looking (defaults to 0)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseStream.html#includes">BaseStream#includes</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>true if an item found which is strictly equal to the parameter item</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="indexOf"><span class="type-signature"></span>indexOf(item [, fromIndex])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Find the index of the first item in a stream strictly equal to the given item</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>item</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>value to look for</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fromIndex</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last"><p>index to start looking (defaults to 0)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseStream.html#indexOf">BaseStream#indexOf</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>the index of first item in the stream matching item, or -1</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="join"><span class="type-signature"></span>join(separator)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Join elements into a string with optional separator</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>separator</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>string to use as separator</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseStream.html#join">BaseStream#join</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>all elements of stream joined into a string.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="map"><span class="type-signature"></span>map(mapper [, context])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Apply a map operation to a stream.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mapper</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#MapFunction">MapFunction</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>map function</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>context passed through to mapping function (could be the colllection we are iterating over)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseStream.html#map">BaseStream#map</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>a stream that is the result of applying mapper to every element in this stream.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="BaseStream.html">BaseStream</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
 
     
 </dd>
@@ -435,6 +3087,1522 @@ items in the stream.</p>
 
 
 
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="global.html#IteratorValue">IteratorValue</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="push"><span class="type-signature"></span>push(element)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Add an element to a stream</p>
+<p>Equivalent to this.concat(Stream.from(arguments))</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>element</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>to add</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseStream.html#push">BaseStream#push</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>a new stream that will iterate through all elments of this stream, then the supplied element</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="BaseStream.html">BaseStream</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="reduce"><span class="type-signature"></span>reduce(callback, value [, context])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Reduces a stream of values to a single object by repeatedly applying a function.</p>
+<p>executes accumulator = callback(accumulator, element, index, context) for every element in the stream.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Reducer">Reducer</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>reduction function.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>initial value of accumulator</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Passed through to reduction function (could be the collection we are iterating over)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseStream.html#reduce">BaseStream#reduce</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>the final value of the accumulator</p>
+</div>
+
+
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="shift"><span class="type-signature"></span>shift()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Get the first item in the stream.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseStream.html#shift">BaseStream#shift</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>the first item in the stream, or undefined if none exists.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="slice"><span class="type-signature"></span>slice( [begin] [, index])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Get a subset of data from the stream, throwing away other values.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>begin</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last"><p>index of first element in slice</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>of first element after slice; by default all remaining elements</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseStream.html#slice">BaseStream#slice</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>a stream containing a subset of elements</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="BaseStream.html">BaseStream</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="some"><span class="type-signature"></span>some(predicate)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Find if some element in the stream matches the predicate.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>predicate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Predicate">Predicate</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>function to test elements.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseStream.html#some">BaseStream#some</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>true if an element is found for which predicate evaluates to true.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="toArray"><span class="type-signature"></span>toArray()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Convert stream to array</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseStream.html#toArray">BaseStream#toArray</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>an array containing all elements in the stream.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="toMap"><span class="type-signature"></span>toMap( [key] [, value])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Convert stream to map</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>key</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>function to convert item to key - defaults to [k,v]=&gt;k</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>function to convert item to value - defaults to [k,v]=&gt;v</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseStream.html#toMap">BaseStream#toMap</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>a new Map with specified keys and values from stream</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Map</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="toObject"><span class="type-signature"></span>toObject( [key] [, value])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Convert stream to object</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>key</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>function to convert item to key - defaults to [k,v]=&gt;k</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>function to convert item to value - defaults to [k,v]=&gt;v</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseStream.html#toObject">BaseStream#toObject</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>a new object with specified property names and values from stream</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="toValues"><span class="type-signature"></span>toValues()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Convert stream of key/value pairs to an array of values.</p>
+<p>Equivalent to map(([k,v])=&gt;v).toArray().</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="BaseStream.html#toValues">BaseStream#toValues</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>an array of simple values.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+
+    </dd>
+</dl>
+
 
         
 
@@ -495,7 +4663,7 @@ items in the stream.</p>
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
-		on 2017-09-10T23:07:24-04:00
+		on 2017-10-10T14:37:50-04:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
