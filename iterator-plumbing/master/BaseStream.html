@@ -449,7 +449,13 @@ will make the updated code more efficient than using simple arrays.</p></div>
 
     
     <div class="description">
-        <p>Check if predicate evaluates to true for all elements in stream</p>
+        <p>Check if predicate evaluates to true for all elements in stream </p>
+<p>Note, unlike <code>every</code> in <code>Array</code>, tri-state logic is used. A predicate that evaluates to null is treated
+as 'value unkown'. Unknown values are not simply treated as false; <code>every</code> will return true if
+<em>every</em> predicate evaluates to 'true', 'false' if any predicate evaluates to false, and, 'null' if
+predicates evaluate to any mixture of 'true' and 'null'. This should make no difference to any code
+written assuming that null and false are equivalent, but allows us to use 'every' for some additional
+real-world cases that would otherwise get very messy.</p>
     </div>
     
 
@@ -2454,7 +2460,7 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
             
 <hr>
 <dt>
-    <h4 class="name" id="reduce"><span class="type-signature"></span>reduce(callback, value [, context])</h4>
+    <h4 class="name" id="reduce"><span class="type-signature"></span>reduce(callback, value [, condition] [, context])</h4>
     
     
 </dt>
@@ -2463,7 +2469,8 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
     
     <div class="description">
         <p>Reduces a stream of values to a single object by repeatedly applying a function.</p>
-<p>executes accumulator = callback(accumulator, element, index, context) for every element in the stream.</p>
+<p>executes accumulator = callback(accumulator, element, index, context) for every element in the stream, or until
+condition(accumulator, index, element) returns false.</p>
     </div>
     
 
@@ -2558,6 +2565,40 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
             
 
             <td class="description last"><p>initial value of accumulator</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>condition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Predicate">Predicate</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>condition for loop</p></td>
         </tr>
 
     
@@ -2970,7 +3011,7 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
             
 <hr>
 <dt>
-    <h4 class="name" id="some"><span class="type-signature"></span>some(predicate)</h4>
+    <h4 class="name" id="some"><span class="type-signature"></span>some(predicate [, context])</h4>
     
     
 </dt>
@@ -2979,6 +3020,12 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
     
     <div class="description">
         <p>Find if some element in the stream matches the predicate.</p>
+<p>Note, unlike <code>some</code> in <code>Array</code>, tri-state logic is used. A predicate that evaluates to null is treated
+as 'value unkown'. Unknown values are not simply treated as false; <code>some</code> will return true if
+any predicate evaluates to 'true', 'false' if every predicate evaluates to false, and, 'null' if
+predicates evaluate to any mixture of 'false' and 'null'. This should make no difference to any code
+written assuming that null and false are equivalent, but allows us to use <code>some</code> for additional
+real-world cases that would otherwise get very messy.</p>
     </div>
     
 
@@ -3000,6 +3047,8 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
 
         <th>Type</th>
 
+        
+        <th>Argument</th>
         
 
         
@@ -3027,10 +3076,52 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>function to test elements.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>context, possibly the collection we are iterating over</p></td>
         </tr>
 
     
@@ -3773,7 +3864,7 @@ each element e of this stream. This works fine if e is an <a href="global.html#I
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
-		on 2017-10-10T14:37:50-04:00
+		on 2017-10-16T15:33:45-04:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
